@@ -149,7 +149,7 @@ if __name__ == "__main__":
 
     print(f"\nTotal chunks collected: {len(data)}")
 
-    with open("apotheek_dataset_10.json", "w", encoding="utf-8") as f:
+    with open("apotheek_dataset.json", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print("Saved to apotheek_dataset_10.json")
+    print("Saved to apotheek_dataset.json")
