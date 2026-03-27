@@ -1,442 +1,342 @@
 [
   {
-    "title": "acrivastine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acrivastine-bij-kinderen/kindertekst",
+    "title": "alirocumab",
+    "url": "https://www.apotheek.nl/medicijnen/alirocumab",
     "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Laat uw kind de capsule in zijn geheel innemen met een half glas water. Heeft uw kind moeite met het heel doorslikken van een capsule? Bekijk dan het instructiefilmpje 'Slikken van medicijnen' . Hierin kunt u zien hoe uw kind de capsule het beste kan innemen. Heeft dat onvoldoende effect? Neem dan contact op met de apotheker. Sommige capsules mag u openmaken. Maar let op: er zijn ook capsules die u niet mag openmaken omdat het medicijn dan minder goed of zelfs niet meer werkt. Soms kan door het openmaken het medicijn vies smaken. Of uw kind krijgt eerder last van bijwerkingen, zoals maagklachten. Vraag dit dus eerst aan de apotheker.",
     "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {
+      "wat_is_het": {
+        "display": "Wat is het",
+        "content": "Alirocumab vermindert de hoeveelheid cholesterol en andere vetten in het bloed. Artsen schrijven het voor bij te veel cholesterol en vet in het bloed , als een dieet of andere medicijnen niet voldoende helpen of te veel bijwerkingen geven."
+      },
+      "bijwerkingen": {
+        "display": "Bijwerkingen",
+        "content": "Behalve het gewenste effect kan dit medicijn bijwerkingen geven. De belangrijkste bijwerkingen zijn de volgende. Zelden (bij 1 tot 10 op de 100 mensen) Pijnlijke mond- en keelslijmvliezen , een loopneus en niezen . Overleg met uw arts als uw klachten niet overgaan of als deze ernstig zijn. Pijn , zwelling en roodheid op de plek van injectie . Wissel de plek van injectie af om dit te voorkomen. U kunt alirocumab in uw buik, bovenbeen of in de buitenkant van uw bovenarm spuiten. Overleg met uw arts bij zwellingen op de huid. Zeer zelden (bij minder dan 1 op de 100 mensen) Griepachtige verschijnselen, zoals koorts, hoofdpijn, spierpijn en koude rillingen. Overleg met uw arts als uw klachten na een paar dagen niet overgaan of als de klachten zeer ernstig zijn. Overgevoeligheid voor dit medicijn. U merkt dit aan huiduitslag, galbulten of jeuk. Overleg dan met uw arts. In zeldzame gevallen kunt u ook last krijgen van een ernstige overgevoeligheid . Dit merkt u aan benauwdheid, flauwvallen of een opgezwollen gezicht, keel of tong. Of een ontsteking van de bloedvaten. Dit merkt u aan diarree met huiduitslag of paarse vlekken op de huid. In deze gevallen moet u onmiddellijk een arts waarschuwen of naar de Eerste-hulpdienst gaan. Als u overgevoelig bent voor alirocumab, mag u het niet meer gebruiken. Geef dit daarom aan de apotheker door. Het apotheekteam kan er dan op letten dat u dit medicijn niet opnieuw krijgt."
+      },
+      "vergeten": {
+        "display": "Vergeten dosis",
+        "content": "Bent u de injectie vergeten? Spuit de injectie dan zodra u eraan denkt. De volgende dosis kunt u op het gebruikelijke moment toedienen."
+      },
+      "rijvaardigheid": {
+        "display": "Rijvaardigheid en alcohol",
+        "content": "U mag autorijden en drinken zoals u normaal doet. Alles eten? Met dit medicijn kunt u in principe alles eten of drinken. Dit medicijn werkt wel het beste als u een vet- en cholesterolverlagend dieet volgt. Overleg hierover met uw arts of een diëtist."
+      },
+      "interacties": {
+        "display": "Interacties met andere medicijnen",
+        "content": "Er zijn van dit medicijn geen belangrijke wisselwerkingen met andere medicijnen bekend."
+      },
+      "zwangerschap": {
+        "display": "Zwangerschap en borstvoeding",
+        "content": "Zwangerschap Gebruik dit medicijn niet als u zwanger bent of binnenkort wilt worden. Het is niet bekend of dit middel schadelijk is voor het ongeboren kind. Gebruikt u dit medicijn en denkt u erover om zwanger te worden? Overleg dan met uw arts. Borstvoeding Wilt u borstvoeding geven, overleg dan met uw arts. Het is niet bekend of dit medicijn in de moedermelk terechtkomt en of het schadelijk voor de baby is."
+      },
+      "lever_nier": {
+        "display": "Bij lever- of nierproblemen",
+        "content": "Nier Het is niet bekend of dit medicijn veilig kan worden gebruikt door mensen met een verminderde werking van de nieren of mensen die dialyseren. Overleg met uw arts als uw nieren minder goed werken of als u dialyseert. Lever Het is niet bekend of mensen met levercirrose dit medicijn veilig kunnen gebruiken. Overleg met uw arts als u levercirrose heeft."
+      },
+      "stoppen": {
+        "display": "Stoppen met het medicijn",
+        "content": "U kunt op elk moment in één keer stoppen met het gebruik van dit medicijn. De hoeveelheid cholesterol- en vet in uw bloed zal dan wel weer omhoog gaan. Bovendien zal uw kans op hart- en vaatziekten ook weer toenemen. Stop daarom alleen in overleg met uw arts."
+      },
+      "algemeen": {
+        "display": "Algemene informatie",
+        "content": "Alirocumab is sinds 2015 internationaal op de markt. Het is op recept als injectie verkrijgbaar onder de merknaam Praluent."
+      }
+    }
   },
   {
-    "title": "acrivastine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acrivastine-bij-kinderen/kindertekst",
+    "title": "anastrozol",
+    "url": "https://www.apotheek.nl/medicijnen/anastrozol",
     "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "Het hangt af van de klachten wanneer uw kind dit medicijn moet innemen. Heeft het kind altijd last van allergieklachten, laat het kind het medicijn dan elke dag innemen. Heeft het kind af en toe last, geef acrivastine dan alleen als het kind een allergische reactie heeft, of 1 uur voor u een allergische reactie verwacht bij het kind. Bijvoorbeeld bij een bezoek aan iemand met een huisdier waar het kind allergisch voor is.",
     "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {
+      "wat_is_het": {
+        "display": "Wat is het",
+        "content": "Anastrozol is een aromatase-remmer . Het vermindert de hoeveelheid oestrogeenhormoon in de eierstokken, vetweefsel, lever en in borstkankergezwellen. Artsen schrijven anastrozol voor bij borstkanker die gevoelig is voor oestrogeenhormonen. Verder bij kanker van de eierstokken en een te vroege puberteit bij jongens."
+      },
+      "bijwerkingen": {
+        "display": "Bijwerkingen",
+        "content": "Behalve de gewenste werking kan dit medicijn ook bijwerkingen geven. De belangrijkste bijwerkingen zijn de volgende. Regelmatig Overgangsklachten , zoals opvliegers, zweten, vaginale bloeding of afscheiding. Ook kan het slijmvlies van de vagina droger worden, waardoor het vrijen pijnlijk kan zijn en er zich makkelijker vaginale infecties kunnen voordoen. Overgangsklachten zijn een gevolg van de verminderde hoeveelheid oestrogeenhormoon in het lichaam. Heeft u er veel last van of heeft u last van vaginale bloeding, neem dan contact op met uw arts. Pijn en stijfheid van de gewrichten. Soms Hoofdpijn, misselijkheid en een gevoel van zwakte. Huiduitslag. Botontkalking (osteoporose). Oestrogeenhormonen maken de botten stevig. Als de hoeveelheid oestrogeenhormoon daalt, worden de botten geleidelijk aan broos en kunnen eerder botbreuken ontstaan. Om dit te voorkomen kan de arts een medicijn van het bisfosfonaat-type voorschrijven. Overleg hierover met uw arts. Zelden Maagdarmklachten , zoals braken, diarree en verlies van eetlust. Slaperigheid. Haaruitval. Leveraandoeningen. U kunt dit merken aan een gevoelige, opgezwollen buik of een gele verkleuring van het oogwit of van de huid. Waarschuw dan een arts. Verhoging van de concentratie cholesterol in het bloed. Als u al een te hoog cholesterolgehalte in uw bloed heeft, zal uw arts u daar extra op controleren. Trombose , waarbij een bloedstolseltje een bloedvat kan afsluiten. Dat gebeurt meestal in een been, soms komt het bloedstolsel in de longen terecht. U kunt trombose herkennen aan een dikke, harde, rode en pijnlijke plek op het been, soms pijn in de kuit en een zwaar gevoel in het been, zelden aan plotseling optredende kortademigheid, soms met pijn of het ophoesten van bloed. Waarschuw in deze gevallen onmiddellijk een arts of ga naar de Eerste-Hulpdienst. Vreemde gevoelswaarnemingen , zoals kriebelingen, jeuk en tintelingen. Smaakveranderingen of smaakverlies . Zeer zelden Overgevoeligheid voor dit medicijn. U krijgt dan galbulten of jeuk. Een ernstige overgevoeligheid is te merken aan benauwdheid, hoge koorts of een opgezwollen gezicht. Ga dan onmiddellijk naar een arts. In zeldzame gevallen kan een ernstige huidafwijking ontstaan met blaarvorming. De blaren ontstaan met name op de lippen en op de slijmvliezen van de mond en geslachtsdelen. Neem dan direct contact op met uw arts. Raadpleeg een arts als u te veel last heeft van een van de bovengenoemde bijwerkingen of als u andere bijwerkingen ervaart, waar u zich zorgen over maakt."
+      },
+      "vergeten": {
+        "display": "Vergeten dosis",
+        "content": "Het is belangrijk dat u dit medicijn elke dag blijft slikken. Mocht u toch een dosis vergeten: U gebruikt dit medicijn 1 keer per dag: duurt het nog meer dan 8 uur voor u de volgende dosis normaal inneemt? Neem de vergeten dosis dan alsnog in. Duurt het nog minder dan 8 uur? Sla de vergeten dosis dan over."
+      },
+      "rijvaardigheid": {
+        "display": "Rijvaardigheid en alcohol",
+        "content": "Kan ik met dit medicijn autorijden, alcohol drinken en alles eten of drinken? Ja, dat kan. U mag autorijden, en u mag eten en drinken zoals u normaal doet."
+      },
+      "interacties": {
+        "display": "Interacties met andere medicijnen",
+        "content": "Het medicijn waarmee de belangrijkste wisselwerking optreedt, is het volgende. In de tekst hieronder staat alleen de werkzame stof van dit medicijn, dus niet de merknaam. Of uw medicijn die werkzame stof bevat, kunt u nagaan in uw bijsluiter onder het kopje 'samenstelling'. De vrouwelijke geslachthormonen, estriol , estradiol en geconjugeerde oestrogenen . Deze hormonen en anastrozol kunnen elkaars werking tegengaan. Overleg met uw arts. Het is belangrijk dat uw arts weet welke medicijnen u nog meer gebruikt. Neem daarom uw medicatieoverzicht mee als u naar het ziekenhuis gaat. Dit is een overzicht waarop staat welke medicijnen u gebruikt, maar ook of u bijvoorbeeld allergisch bent voor bepaalde medicijnen. U kunt dit overzicht bij uw eigen apotheek opvragen. Krijgt u in het ziekenhuis nieuwe medicijnen, of verandert er iets aan uw medicijngebruik? Geef dit dan ook weer door aan uw eigen apotheek. Dan blijft uw medicatieoverzicht actueel."
+      },
+      "zwangerschap": {
+        "display": "Zwangerschap en borstvoeding",
+        "content": "Zwangerschap Gebruik dit medicijn NIET als u zwanger bent of zwanger kunt worden. Er is een grote kans dat dit medicijn aangeboren afwijkingen kan veroorzaken bij de baby. U mag dit medicijn alleen gebruiken als niet meer menstrueert, dus in de overgang bent. Twijfelt u of u nog zwanger kunt worden, raadpleeg dan uw arts. Uw arts controleert ook of u in de overgang bent. Borstvoeding Dit medicijn wordt meestal alleen gebruikt door vrouwen die niet meer zwanger kunnen worden, dus geen borstvoeding geven. Geeft u toch borstvoeding? Gebruik dit middel NIET als u borstvoeding geeft of stop de borstvoeding. Het is niet bekend of dit middel in de moedermelk terechtkomt. Het medicijn kan schadelijk zijn voor de baby."
+      },
+      "lever_nier": {
+        "display": "Bij lever- of nierproblemen",
+        "content": "Nieren Werken uw nieren minder goed of dialyseert u? U mag dit medicijn gebruiken, zoals uw arts heeft voorgeschreven. Lever Het is niet bekend of mensen met levercirrose (ernstige leverziekte) dit medicijn veilig kunnen gebruiken. Overleg met uw arts als u levercirrose heeft."
+      },
+      "stoppen": {
+        "display": "Stoppen met het medicijn",
+        "content": "Voor het effect is het nodig dit medicijn een aantal jaar te gebruiken. Stop dus niet met dit medicijn, maar overleg eerst met uw arts."
+      },
+      "algemeen": {
+        "display": "Algemene informatie",
+        "content": "Anastrozol is sinds 1995 internationaal op de markt. Het is verkrijgbaar in tabletten onder de merknaam Arimidex en als het merkloze Anastrozol."
+      }
+    }
   },
   {
-    "title": "acrivastine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acrivastine-bij-kinderen/kindertekst",
+    "title": "atazanavir",
+    "url": "https://www.apotheek.nl/medicijnen/atazanavir",
     "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "Voor hooikoorts is enkele weken gebruik meestal voldoende. Bij een allergie het hele jaar door kan het kind het medicijn gebruiken zolang het klachten heeft. Mocht het kind na 3 dagen gebruik geen verbetering merken, dan heeft het kind waarschijnlijk geen baat bij dit medicijn. Overleg dan met de arts.",
     "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {
+      "wat_is_het": {
+        "display": "Wat is het",
+        "content": "Atazanavir is een virusremmer. Het remt de groei van het virus dat hiv veroorzaakt. Artsen schrijven het voor bij hiv en aids ."
+      },
+      "bijwerkingen": {
+        "display": "Bijwerkingen",
+        "content": "Behalve het gewenste effect kan dit medicijn bijwerkingen geven. De belangrijkste bijwerkingen zijn de volgende. Zelden Maag-darmklachten , zoals diarree, misselijkheid, braken, buikpijn, opgezette buik, winderigheid en verminderde of juist toegenomen eetlust. Hoofdpijn, vermoeidheid, slap en zwak gevoel . Gele verkleuring van de huid, ogen en slijmvliezen. Raadpleeg dan uw arts. Zeer zelden is er sprake zijn van een ernstige leveraandoening. Dit kunt u merken aan pijn in de bovenbuik, ontkleurde ontlasting of zeer donkere urine. Waarschuw dan uw arts. Als u al een leveraandoening heeft, zal de arts u extra goed controleren of een ander medicijn voorschrijven. Overleg met uw arts. Huiduitslag met rode vlekken, galbulten of jeuk. Deze huiduitslag ontstaat meestal binnen drie weken na het begin van de behandeling. In zeer zeldzame gevallen kan een ernstiger huidaandoening ontstaan met blaarvorming of koorts. Waarschuw daarom uw arts bij huiduitslag (zie ook onder Zeer zelden: Overgevoeligheid ). Bij mensen die daarvoor gevoelig zijn, kunnen verschijnselen van diabetes (suikerziekte) ontstaan. Zij merken dit doordat zij veel dorst krijgen en veel moeten plassen. Mensen met diabetes kunnen tijdens de behandeling meer insuline of bloedsuikerverlagers nodig hebben. Meet extra vaak uw bloedsuiker. Zeer zelden Spierpijn en gewrichtspijn . In zeer zeldzame gevallen kan dit medicijn de spieren aantasten, waardoor ook een nieraandoening kan ontstaan. Neem bij onverklaarbare spierpijn contact op met uw arts. Raadpleeg ook uw arts, als uw gewrichten pijnlijk of stijf worden, of als u ze moeilijk kunt bewegen. Hartritmestoornissen. U merkt dit soms alleen aan plotselinge duizelingen of als u even wegraakt. Vooral kinderen en mensen met de hartritmestoornis verlengd QT-interval hebben hier meer kans op. Gebruik dit medicijn niet als u deze hartritmestoornis heeft. Psychische klachten , zoals abnormale dromen, slaperigheid of juist slapeloosheid, angst of depressie. Raadpleeg uw arts als u deze klachten bemerkt. Zenuwbeschadiging , te merken aan een doof of tintelend gevoel van de huid. Raadpleeg uw arts als u dit merkt. Toename van bloedingen bij mensen met een verhoogde bloedingsneiging (hemofiliepatiënten). Ontsteking van de galblaas of alvleesklier , galstenen . Raadpleeg uw arts bij pijn in de buik, koorts, verlies aan eetlust, misselijkheid, overmatige neiging om te bewegen. Aandoening van blaas of nieren , nierstenen . Plotselinge pijn in de zij kan wijzen op een niersteenaanval (nierkoliek). Neem dan contact op met de arts. Zeer zelden ontstaat een verminderde werking van de nieren of een ontsteking van de nieren of blaas. Dit merkt u doordat u vaak kleine beetjes moet plassen, aan bloed in de urine of aan pijn in de buik of zij. Uw arts zal de werking van uw nieren regelmatig controleren. Haaruitval . Raadpleeg uw arts als u hier last van heeft. Overgevoeligheid voor dit medicijn. Dit merkt u aan huiduitslag, galbulten en jeuk. Een heel enkele keer ontstaat een ernstige overgevoeligheid. Dit is te merken aan blaarvorming op de huid, in de mond of op de geslachtsdelen, zwelling in het gezicht, ontstoken ogen of koorts. Waarschuw altijd een arts bij huiduitslag of koorts. Ga bij ernstige verschijnselen direct naar een arts of Eerste Hulpdienst. Als u overgevoelig blijkt te zijn, mag u dit medicijn in de toekomst niet meer gebruiken. Geef aan de apotheker door dat u overgevoelig bent voor atazanavir. Het apotheekteam kan er dan op letten dat u dit medicijn niet opnieuw krijgt. Raadpleeg uw arts als u te veel last heeft van één van de bovengenoemde bijwerkingen of als u andere bijwerkingen ervaart waar u zich zorgen over maakt."
+      },
+      "vergeten": {
+        "display": "Vergeten dosis",
+        "content": "Het is belangrijk dit medicijn consequent in te nemen op de tijdstippen die u met uw arts heeft afgesproken. Hierdoor is er altijd voldoende medicijn in uw bloed om het virus te bestrijden. Zodra u een dosering uitstelt loopt u het risico dat het aantal virussen toeneemt. Bovendien is er dan kans dat het virus resistent (ongevoelig) wordt voor het medicijn. Bent u een dosis vergeten? Neem de dosis in zodra u het merkt en neem de volgende dosis op het gebruikelijke moment. Als het al tijd is voor de volgende dosis, sla dan de vergeten dosis over. Keer daarna terug naar uw normale slikschema. De ervaring leert dat met name in weekends het moeilijk is om aan de vaste innametijden te denken. Toch is het ook dan belangrijk de wekker te zetten zodat u geen dosering overslaat. U kunt eventueel het schema tijdelijk aanpassen door de tijdstippen te vervroegen, dat levert geen gevaar op voor de werking. Stel echter geen dosis uit, dan wordt de hoeveelheid werkzame stof in uw bloed te laag. Als u, na vervroegen, weer terugkeert naar uw normale schema kan dat alleen door de tijdstippen weer geleidelijk met een half uur uit te stellen, totdat u weer op uw oude schema zit. U kunt bij uw apotheek een speciale weekdoos verkrijgen waarin u de medicijnen voor een week kunt uitzetten. Met een horloge met verschillende alarmen of met een zogenaamde pillenwekker (vraag uw apotheek) kunt u uzelf eraan herinneren dat het tijd is voor een dosis. Let op als u reist en daardoor grote tijdsverschillen moet overbruggen. Ga ervan uit dat een tijdsverschil van één uur eerder of later niet zo`n probleem is. U kunt uw slikschema blijven gebruiken. Overleg met uw arts of consulent hoe u uw slikschema kunt aanpassen aan grotere tijdsverschillen. Bij de overgang van zomertijd naar wintertijd en andersom kunt u uw gewone slikschema blijven gebruiken."
+      },
+      "rijvaardigheid": {
+        "display": "Rijvaardigheid en alcohol",
+        "content": "autorijden en alles eten? Bij dit medicijn zijn hiervoor geen beperkingen. alcohol drinken? Te veel alcohol is niet goed voor de lever. Atazanavir geeft in zeldzame gevallen leverafwijkingen. Drink geen alcohol of hooguit 1 glas per dag en drink in ieder geval 2 dagen per week niet."
+      },
+      "interacties": {
+        "display": "Interacties met andere medicijnen",
+        "content": "Atazanavir heeft met veel andere medicijnen wisselwerkingen. Het remt de afbraak van veel medicijnen in het lichaam, waardoor deze medicijnen meer bijwerkingen kunnen hebben. Ook kunnen veel medicijnen de werking van atazanavir verminderen, waardoor de werkzaamheid van atazanavir afneemt en het virus aanwezig blijft. Vraag aan uw apotheker om welke medicijnen dit gaat. Uw arts en apotheker controleren of u atazanavir veilig kunt gebruiken naast uw andere medicijnen. Zorg er daarom voor dat uw arts en apotheker op de hoogte zijn van alle medicijnen die u gebruikt. Ook de medicijnen die u zonder recept koopt. Ook kan uw apotheker u precies vertellen hoeveel tijd er tussen de verschillende medicijnen moet zijn en voor u een innameschema maken. Wordt het innameschema in uw situatie te lastig, overleg dan met uw arts. Misschien kan deze één van de medicijnen vervangen door een medicijn dat u wel samen mag gebruiken."
+      },
+      "zwangerschap": {
+        "display": "Zwangerschap en borstvoeding",
+        "content": "Zwangerschap Bent u zwanger of wilt u zwanger worden? Overleg hierover met uw arts. Tijdens de zwangerschap moet u hiv-middelen blijven gebruiken. Want tijdens de zwangerschap is het extra belangrijk dat de hoeveelheid virus in uw bloed erg laag is. Dit verkleint namelijk het risico dat de baby besmet raakt met hiv. Overleg ook met uw arts of uw hiv-behandeling geschikt is tijdens de zwangerschap. Sommige hiv-middelen zijn namelijk schadelijk voor uw baby. Mogelijk moet u andere hiv-middelen gebruiken. Borstvoeding Geef GEEN borstvoeding als u hiv heeft. Het virus kan namelijk via de moedermelk de baby besmetten. Overleg hierover met uw arts."
+      },
+      "stoppen": {
+        "display": "Stoppen met het medicijn",
+        "content": "Het is niet verstandig te stoppen, behalve als u te maken krijgt met ernstige bijwerkingen. Als u stopt zal het virus dat hiv veroorzaakt zich weer vermeerderen, zodat u weer klachten kunt krijgen. Er zijn situaties denkbaar waardoor u toch tijdelijk moet stoppen met deze hiv-remmer. Bijvoorbeeld bij bepaalde operaties of als u pillen kwijtraakt en niet snel aan nieuwe kunt komen. Overleg in dat geval altijd met een arts. Als u moet stoppen, is het meestal beter om alle medicijnen van de combinatie te stoppen. Het virus kan namelijk ongevoelig worden voor uw medicijnen als u ze niet allemaal gebruikt. Meestal zal de arts u een andere combinatie van hiv-remmers voorschrijven, maar als dat niet mogelijk is, moet u tijdelijk met alle hiv-remmers stoppen."
+      },
+      "algemeen": {
+        "display": "Algemene informatie",
+        "content": "Atazanavir is sinds 2003 internationaal op de markt. Het is op recept verkrijgbaar in capsules onder de merknaam Reyataz en als het merkloze Atazanavir."
+      }
+    }
   },
   {
-    "title": "acrivastine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acrivastine-bij-kinderen/kindertekst",
+    "title": "alfuzosine",
+    "url": "https://www.apotheek.nl/medicijnen/alfuzosine",
     "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
     "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {
+      "wat_is_het": {
+        "display": "Wat is het",
+        "content": "Alfuzosine behoort tot de alfablokkers . Het ontspant de spieren van de blaashals en de prostaat. Het verbetert de doorstroming van urine door de plasbuis en vermindert klachten als vaak moeten plassen. Artsen schrijven het voor bij een vergrote prostaat . En soms bij klachten bij het plassen en ' s nachts vaak moeten plassen ."
+      },
+      "vergeten": {
+        "display": "Vergeten dosis",
+        "content": "Het is belangrijk dit medicijn consequent in te nemen. Als u dit medicijn 1 keer per dag gebruikt: duurt het nog meer dan 8 uur voor u de volgende tablet normaal inneemt? Neem de vergeten tablet dan alsnog in. Duurt het nog minder dan 8 uur? Sla de vergeten tablet dan over. Als u dit medicijn 2 keer per dag gebruikt: duurt het nog meer dan 4 uur voor u de volgende tablet normaal inneemt? Neem de vergeten tablet dan alsnog in. Duurt het nog minder dan 4 uur? Sla de vergeten tablet dan over."
+      },
+      "rijvaardigheid": {
+        "display": "Rijvaardigheid en alcohol",
+        "content": "Autorijden, alcohol drinken en alles eten of drinken? Ja, dat kan. U mag autorijden, en u mag eten en drinken zoals u normaal doet."
+      },
+      "interacties": {
+        "display": "Interacties met andere medicijnen",
+        "content": "Dit medicijn heeft wisselwerkingen met andere medicijnen. In de tekst hieronder staan alleen de werkzame stoffen van deze medicijnen, dus niet de merknamen. Of uw medicijn een van die werkzame stoffen bevat, kunt u nagaan in uw bijsluiter onder het kopje 'samenstelling'. De medicijnen waarmee de belangrijkste wisselwerkingen optreden, zijn de volgende. Hart- en vaatmedicijnen die de bloeddruk verlagen kunnen de duizeligheid door dit middel versterken. Deze wisselwerking is alleen van belang wanneer u al een bloeddrukverlagend medicijn gebruikt en u nu voor het eerst alfuzosine hierbij krijgt. De bloeddruk kan de eerste keren dat u alfuzosine gebruikt teveel dalen, waardoor u erg duizelig kunt worden of zelfs flauw kunt vallen. De arts moet hiermee rekening houden bij het bepalen van de dosering, zodat de bloeddruk niet te laag wordt. Neem de alfuzosine de eerste keren 's avonds voor het slapengaan in op de rand van uw bed en blijf daarna liggen. U zult dan geen last krijgen van duizeligheid. Sommige medicijnen tegen hiv en hepatitis C . Vraag aan uw apotheker om welke medicijnen dit gaat. Erectiemedicijnen , zoals sildenafil, tadalafil en vardenafil. Uw bloeddruk kan tijdelijk extra dalen als u een erectiemedicijn neemt. U merkt dit aan duizeligheid. Dit gaat vanzelf weer voorbij. Ga niet plotseling staan als u duizelig bent."
+      },
+      "stoppen": {
+        "display": "Stoppen met het medicijn",
+        "content": "U kunt op elk moment in 1 keer met het gebruik van dit medicijn stoppen. Denkt u erover na om te stoppen met dit medicijn? Lees voor meer informatie het thema ' Kan ik stoppen met mijn medicijnen tegen plasklachten? '."
+      },
+      "algemeen": {
+        "display": "Algemene informatie",
+        "content": "Alfuzosine is sinds 1990 internationaal op de markt. Het is op recept verkrijgbaar onder de merknaam Xatral en als het merkloze Alfuzosine in tabletten."
+      }
+    }
   },
   {
-    "title": "azitromycine in het oog bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azitromycine-in-het-oog-bij-kinderen/kindertekst",
+    "title": "apremilast",
+    "url": "https://www.apotheek.nl/medicijnen/apremilast",
     "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Hieronder leest u hoe uw kind het medicijn het beste kan gebruiken. Oogdruppels Toedienen bij een ouder kind: zie voor de instructie de informatie over azitromycine in het oog bij volwassenen . Zie ook het instructiefilmpje 'Oogdruppels bij een ander: volwassene of ouder kind' Toedienen bij een jonger kind: deze methode is geschikt als uw kind de ogen moeilijk open kan houden en nog niet zelfstandig kan zitten. Voorbereiding Moet uw kind meer soorten oogdruppels gebruiken? Begin eerst met het andere oogmiddel. Wacht dan minstens 15 minuten voordat u de volgende oogdruppel indruppelt. Gebruik dan pas azitromycine in het oog. Was uw handen met warm water en zeep. Droog ze af met een schone doek. Laat het kind op de rug liggen. Zitten er schilfers en korsten op de oogleden? Haal deze dan weg met een watje met kraanwater. Neem een plastic tubetje oogdruppels , bestemd voor eenmalig gebruik, uit het zakje. Draai het dopje eraf. Neem het tubetje in de hand alsof u een pen vasthoudt. Toedienen van de druppels Laat het kind de ogen sluiten. Steun met de hand op de slaap en houd het tubetje boven de binnenste ooghoek. Zorg ervoor dat het tubetje uw oog, ooglid of wimpers niet raakt. Knijp in het tubetje en laat een druppel in de ooghoek vallen. Laat het kind de ogen openen en een paar keer met de ogen knipperen. Voorkom dat het kind in de ogen gaat wrijven. Laat het kind de ogen weer sluiten en probeer minimaal 1 minuut de traanbuis dicht te houden. Dit kan door zachtjes de vinger in de holling tussen het oog en de neus te duwen. Net onder het bobbeltje in de ooghoek. Anders verdwijnt de werkzame stof in deze oogdruppels te snel uit het oog. Laat het kind daarna rustig de ogen openen. Voor het kind is de behandeling nu klaar. Na het toedienen van de druppels Gooi het restant van het tubetje weg. Was de handen nog een keer met warm water en zeep. Droog ze af met een schone doek. Zie ook het instructiefilmpje 'Oogdruppels bij een ander: jong kind' . Bewaaradvies en houdbaarheid Bewaar de andere tubetjes in het zakje, buiten invloed van licht.",
     "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {
+      "wat_is_het": {
+        "display": "Wat is het",
+        "content": "Apremilast remt ontstekingen die ontstaan door een te actief afweersysteem. Artsen schrijven het voor bij de huidziekte psoriasis , bij gewrichtsontsteking door psoriasis (artritis psoriatica) en bij mondzweren (aften) door de ziekte van Behçet."
+      },
+      "bijwerkingen": {
+        "display": "Bijwerkingen",
+        "content": "Behalve het gewenste effect kan dit medicijn bijwerkingen geven. De belangrijkste bijwerkingen zijn de volgende. Soms Misselijkheid, diarree en verlies van eetlust . Zelden braken. Misselijkheid en diarree ontstaan meestal binnen 2 weken en verdwijnen weer na 4 weken, als uw lichaam is ingesteld op dit medicijn. U kunt door de misselijkheid en verlies van eetlust gewicht verliezen. Als u al ondergewicht heeft, overleg dan eerst met uw arts. Zelden Meer kans op infecties, zoals griep, verkoudheid, keelontsteking, bronchitis, bijholteontsteking. Raadpleeg uw arts als u koorts krijgt, of langdurig hoest . Pijn boven in de buik, opkomend maagzuur, opgeblazen gevoel, maagpijn. Hoofdpijn, migraine. Slapeloosheid, vermoeidheid. Psychische klachten , zoals depressiviteit. In zeldzame gevallen kunnen gedachten aan zelfdoding ontstaan. Als u merkt dat u depressief wordt, of dat uw depressiviteit verergert, moet u contact opnemen met de arts. Rugpijn. Zeer zelden Huiduitslag en galbulten. Dit kan wijzen op overgevoeligheid, maar dat hoeft niet (zie Overgevoeligheid voor dit medicijn ). Bloeding in de darm of maag. Waarschuw een arts, als u bloed bij de ontlasting merkt, of als de ontlasting zwart en teerachtig is. Overgevoeligheid voor dit medicijn. U merkt dit aan huiduitslag, galbulten of jeuk. Raadpleeg dan uw arts. In zeldzame gevallen kunt u last krijgen van een zwelling van het gezicht, lippen, mond, tong of keel. U kunt hierbij erg benauwd worden. Waarschuw dan direct een arts, of ga naar de Eerste-hulpdienst. Als u overgevoelig bent voor apremilast, mag u het niet meer gebruiken. Geef dit aan de apotheker door. Het apotheekteam kan er dan op letten dat u het niet meer krijgt. Raadpleeg uw arts als u te veel last heeft van één van de bovengenoemde bijwerkingen of als u andere bijwerkingen ervaart waar u zich zorgen over maakt."
+      },
+      "vergeten": {
+        "display": "Vergeten dosis",
+        "content": "Het is belangrijk dit medicijn consequent in te nemen. Als u toch een dosis bent vergeten: U gebruikt dit medicijn 2 keer per dag. Duurt het meer dan 4 uur voor u de volgende tablet normaal inneemt? Neem de vergeten tablet dan alsnog in. Duurt het minder dan 4 uur? Sla de vergeten tablet dan over."
+      },
+      "rijvaardigheid": {
+        "display": "Rijvaardigheid en alcohol",
+        "content": "autorijden, alcohol drinken en alles eten? Bij dit medicijn zijn hiervoor geen beperkingen."
+      },
+      "interacties": {
+        "display": "Interacties met andere medicijnen",
+        "content": "Dit middel heeft wisselwerkingen met andere medicijnen. In de tekst hieronder staan alleen de werkzame stoffen van deze medicijnen, dus niet de merknamen. Of uw medicijn een van die werkzame stoffen bevat, kunt u nagaan in uw bijsluiter onder het kopje 'samenstelling'. De medicijnen waarmee de belangrijkste wisselwerkingen optreden, zijn de volgende. Vaccins. Overleg met uw arts als u gevaccineerd gaat worden. Bepaalde vaccins mag u niet gebruiken. Apremilast vermindert de werkzaamheid van deze vaccins en verhoogt de kans op bijwerkingen ervan. Dit betreft onder andere bof-mazelen-rodehondvaccin (BMR), gelekoortsvaccin, rotavirusvaccin en BCG-vaccin. Bij andere vaccins moet u soms een extra vaccinatie krijgen of moet uw bloed onderzocht om te kijken of het vaccin goed heeft gewerkt. Dit betreft onder andere influenzavaccin, tetanusvaccin en vaccin tegen baarmoederhalskanker. Rifampicine , een medicijn tegen tuberculose en meningitis (nekkramp). Dit medicijn vermindert de werking van apremilast. Als u beide medicijnen toch moet gebruiken, zal uw arts de werking van apremilast extra controleren en eventueel de dosis aanpassen. Als u stopt met rifampicine duurt dit effect nog tot enkele weken na stoppen. Sommige medicijnen tegen kanker. Vraag aan uw apotheker om welke medicijnen dit gaat. De werking of bijwerkingen van deze medicijnen kunnen veranderen. Overleg hierover met uw arts."
+      },
+      "zwangerschap": {
+        "display": "Zwangerschap en borstvoeding",
+        "content": "Zwangerschap Over het gebruik van dit medicijn tijdens de zwangerschap is nog te weinig bekend. Meld het aan uw arts en apotheker zodra u zwanger bent, of binnenkort wilt worden. Samen kunt u bespreken wat het risico voor de baby is als u doorgaat met het medicijn. Of wat het risico voor u of uw baby is als u met het medicijn stopt. Borstvoeding Wilt u borstvoeding geven, overleg dan met uw arts. Het is niet bekend of het in de moedermelk terechtkomt en of het schadelijk is voor de baby. Misschien kunt u overstappen op een ander medicijn. Een medicijn waarvan wel bekend is dat u het veilig kunt gebruiken."
+      },
+      "stoppen": {
+        "display": "Stoppen met het medicijn",
+        "content": "U kunt in één keer stoppen met het gebruik. Uw klachten kunnen dan wel terugkeren. Raadpleeg eerst uw arts als u stoppen wilt."
+      },
+      "algemeen": {
+        "display": "Algemene informatie",
+        "content": "Apremilast is sinds 2014 internationaal op de markt. Het is op recept verkrijgbaar in tabletten onder de merknaam Otezla."
+      }
+    }
   },
   {
-    "title": "azitromycine in het oog bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azitromycine-in-het-oog-bij-kinderen/kindertekst",
+    "title": "aliskiren",
+    "url": "https://www.apotheek.nl/medicijnen/aliskiren",
     "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "Gebruik dit medicijn 2 keer per dag bij uw kind. Verdeel de doseringen zo goed mogelijk over de dag, bijvoorbeeld 's ochtends en 's avonds.",
     "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {
+      "wat_is_het": {
+        "display": "Wat is het",
+        "content": "Aliskiren behoort tot de renine-remmers . Het verlaagt de bloeddruk. Artsen schrijven het voor bij een hoge bloeddruk."
+      },
+      "bijwerkingen": {
+        "display": "Bijwerkingen",
+        "content": "Behalve het gewenste effect kan dit medicijn bijwerkingen geven. De belangrijkste bijwerkingen zijn de volgende. Zelden Duizeligheid . Het kan zijn dat u dit vooral merkt bij het opstaan uit bed of uit een stoel. Dit gaat in het algemeen over als uw lichaam zich heeft ingesteld op de lagere bloeddruk. Dit is binnen enkele dagen tot weken. Als u zich duizelig voelt, sta dan niet te snel op uit bed of van een stoel. U kunt dan het beste even gaan liggen en de benen wat hoger leggen, bijvoorbeeld op een kussen. Neem dit middel de eerste paar keer 's avonds in op de rand van uw bed, zodat u bij duizeligheid kunt gaan liggen. Als u na enkele weken nog steeds last heeft van duizeligheid, moet u uw arts raadplegen. Diarree. Heeft u hier veel last van, neem dan contact op met uw arts. Gewrichtspijn . Teveel aan kalium , een bepaalde stof in het bloed. U merkt dit meestal zelf niet. Een enkele keer kunt u hierdoor last krijgen van lusteloosheid en hartritmestoornissen. Een te hoog kaliumgehalte kan met name ontstaan als uw nieren minder goed werken of als u diabetes mellitus (suikerziekte) heeft, die niet goed onder controle is met dieet of medicijnen. Uw arts zal het kaliumgehalte regelmatig controleren. Zeer zelden Huiduitslag. Raadpleeg in dat geval uw arts. In zeer zeldzame gevallen kan een ernstige huidaandoening ontstaan met blaarvorming. De blaren ontstaan met name op de lippen en op de slijmvliezen van de mond en geslachtsdelen. Neem dan direct contact op met uw arts. Bloedarmoede . Raadpleeg bij extreme vermoeidheid uw arts. Hartkloppingen , benauwdheid en hoesten . Neem contact op met uw arts als u hier last van heeft. Ontsteking van de lever. Bij plotselinge hevige pijn in bovenbuik of geelzucht, moet u direct een arts waarschuwen. Een verminderde nierwerking na gebruik gedurende meerdere maanden. Meestal merkt u dit niet zelf, maar via bloedonderzoek kan dit worden opgemerkt. Uw arts zal de nierfunctie regelmatig controleren. Overgevoeligheid voor dit medicijn. U kunt dan huiduitslag, galbulten of jeuk krijgen. Ook kan dit zich uiten in 'angio-oedeem': een zwelling van het gezicht, lippen, mond, tong of keel . U kunt hierbij erg benauwd worden. Als het ontstaat moet u onmiddellijk een arts opzoeken of naar de Eerste-Hulpdienst gaan. U mag dit soort middelen in de toekomst niet meer gebruiken. Geef daarom aan de apotheek door dat u overgevoelig bent voor aliskiren. Het apotheekteam kan er dan op letten dat u dit middel niet opnieuw krijgt. In zeer zeldzame gevallen kan een ernstige huidaandoening ontstaan met blaarvorming. De blaren ontstaan met name op de lippen en op de slijmvliezen van de mond en geslachtsdelen. Stop dan ook met het gebruik en raadpleeg uw arts. Geef door aan de apotheek door dat u overgevoelig bent voor aliskiren. Raadpleeg uw arts als u te veel last heeft van één van de bovengenoemde bijwerkingen of als u andere bijwerkingen ervaart waar u zich zorgen over maakt."
+      },
+      "vergeten": {
+        "display": "Vergeten dosis",
+        "content": "Het is belangrijk dit medicijn consequent in te nemen. Mocht u toch een dosis vergeten zijn: U gebruikt aliskiren 1 keer per dag : duurt het nog meer dan 8 uur voor u de volgende tablet normaal inneemt? Neem de vergeten tablet dan alsnog in. Duurt het nog minder dan 8 uur? Sla de vergeten tablet dan over."
+      },
+      "rijvaardigheid": {
+        "display": "Rijvaardigheid en alcohol",
+        "content": "autorijden? U mag autorijden als u dit medicijn gebruikt. alcohol drinken? Alcohol verwijdt de bloedvaten, net als aliskiren. U kunt daardoor duizelig worden. Probeer het drinken van alcohol eerst met mate. U kunt dan zelf inschatten of u hier veel last van krijgt. In het algemeen is enkele keren per week een glas wijn geen probleem. alles eten? Bij dit medicijn kunt u beter niet te veel grapefruit of sinaasappel eten, of het sap ervan drinken. Dan is er namelijk kans dat uw medicijn minder goed werkt. Wilt u grapefruit of sinaasappel eten? Of het sap ervan drinken? Wacht na het innemen van uw medicijn minimaal 4 uur met het eten of drinken van grapefruit(sap) of sinaasappel(sap). Eet per keer niet meer dan 2 grapefruits of sinaasappels. Drink per keer niet meer dan 1 glas grapefruitsap of sinaasappelsap. In 1 glas zit namelijk sap van meerdere grapefruits of sinaasappels. Als u meer of vaker grapefruit of sinaasappel drinkt of eet, wordt de kans groter dat uw medicijn minder goed werkt. Lees hier meer informatie over citrusfruit en medicijnen."
+      },
+      "interacties": {
+        "display": "Interacties met andere medicijnen",
+        "content": "Dit medicijn heeft wisselwerkingen met andere medicijnen. In de tekst hieronder staan alleen de werkzame stoffen van deze medicijnen, dus niet de merknamen. Of uw medicijn een van die werkzame stoffen bevat, kunt u nagaan in uw bijsluiter onder het kopje 'samenstelling'. De medicijnen waarmee de belangrijkste wisselwerkingen optreden, zijn de volgende. Plastabletten . Deze wisselwerking is alleen van belang als u al een plastablet gebruikt en daar nu een renine-remmer bij krijgt. De eerste paar dagen dat u deze combinatie gebruikt kunt u last krijgen van erge duizeligheid, doordat de bloeddruk sterk daalt. Meestal raadt de arts daarom aan om de plastabletten enkele dagen niet in te nemen. Na 2 of 3 dagen begint u dan met de renine-remmer. U heeft zo minder last van duizeligheid. Als u de renine-remmer vervolgens 2 of 3 dagen gebruikt kunt u zonder problemen de plastablet weer innemen. Ook kan uw arts u aanraden om de plastablet wel te blijven gebruiken. De arts zal dan aangeven om de eerste dagen met een lage dosis aliskiren te beginnen en die na een paar dagen te verhogen. Andere bloeddrukverlagende medicijnen . De bloeddruk kan te laag worden als u aliskiren samen met andere bloeddrukverlagers gaat gebruiken. Uw arts houdt hier rekening mee en zal in het begin een lagere dosering voorschrijven. Al naar gelang het effect zal de arts de dosis geleidelijk verhogen. Als u diabetes of een verminderde nierfunctie heeft en al een bloeddrukverlagend medicijn van het type 'ACE-remmer' (zoals captopril of fosinopril) of 'angiotensine-II-blokker' (zoals losartan of valsartan) gebruikt, mag u aliskiren niet gebruiken. U heeft dan meer kans op bijwerkingen. Als u toch aliskiren voorgeschreven heeft gekregen, neem dan contact op met uw arts. Kaliumzout en de kaliumsparende plasmiddelen eplerenon, spironolacton en triamtereen. Door combinatie met renineremmers kan de hoeveelheid kalium in het bloed te hoog worden. U merkt dit aan lusteloosheid en hartritmestoornissen. U kunt de combinatie veilig gebruiken, als bij u regelmatig de hoeveelheid kalium in het bloed wordt gemeten. Kalium zit ook in 'zeezout' of 'dieetzout'. Het eten van veel van deze zouten kan ook de hoeveelheid kalium in het bloed verhogen. De antibiotica co-trimoxazol (trimethoprim/sulfamethoxazol) en trimethoprim . De combinatie kan de hoeveelheid kalium in het bloed te hoog maken. U merkt dit aan een onregelmatige hartslag, gevoelloosheid of vreemd gevoel in de armen of benen, lusteloosheid, verwardheid en zwakte. Raadpleeg bij een of meer van deze verschijnselen uw arts. U kunt de combinatie veilig gebruiken als bij u regelmatig de hoeveelheid kalium in het bloed wordt gemeten. Itraconazol , een antischimmelmiddel. Aliskiren kan door itraconazol te sterk werken en te veel bijwerkingen geven. Mogelijk kunt u overstappen op een ander medicijn tegen hoge bloeddruk. Lithium , een medicijn tegen manische depressiviteit. Aliskiren kan de bijwerkingen van lithium versterken, zoals maagdarmklachten, trillen, spierzwakte, spiertrekkingen, duizeligheid, slaperigheid, sufheid, verwardheid, verminderde concentratie, moeite met lopen en spreken, en epileptische aanvallen. Waarschuw meteen uw arts als u last krijgt van één van deze bijwerkingen. Uw arts moet het lithiumgehalte in het bloed regelmatig laten meten en de dosering eventueel aanpassen. Pijnstillers van het NSAID-type , zoals ibuprofen, naproxen en diclofenac. Deze pijnstillers kunnen de werking van aliskiren verminderen. Gebruik u een pijnstiller van het NSAID-type langer dan twee weken? Dan zal uw bloeddruk extra gecontroleerd moeten worden. Ciclosporine , een middel tegen afweerreacties. Aliskiren kan door ciclosporine te sterk werken en te veel bijwerkingen geven. Mogelijk kunt u overstappen op een ander medicijn tegen hoge bloeddruk."
+      },
+      "zwangerschap": {
+        "display": "Zwangerschap en borstvoeding",
+        "content": "Zwangerschap Gebruik dit medicijn NIET tijdens de laatste 6 maanden van de zwangerschap (tweede en derde trimester). Dit medicijn is slecht voor de baby. Het kan aangeboren afwijkingen bij de baby veroorzaken. Over het gebruik van dit medicijn tijdens de eerste 3 maanden van de zwangerschap (eerste trimester) is nog te weinig bekend. Ook dan kunt u dit medicijn beter NIET gebruiken. Bent u zwanger of wilt u zwanger worden? Overleg dan met uw arts of apotheker. Uw arts zal proberen u over te zetten op een ander medicijn. Een medicijn waarvan wel bekend is dat u het veilig kunt gebruiken. Borstvoeding Wilt u borstvoeding geven? Overleg dan met uw arts of apotheker. Het is niet bekend of dit medicijn in de moedermelk komt en of het slecht voor de baby is. Misschien kan uw arts een ander medicijn voorschrijven. Een medicijn waarvan wel bekend is dat u het veilig kunt gebruiken. Of u kunt kunstvoeding geven."
+      },
+      "stoppen": {
+        "display": "Stoppen met het medicijn",
+        "content": "U kunt op elk moment in één keer stoppen met het gebruik van dit medicijn. De bloeddruk kan dan wel weer omhoog gaan. Stop daarom alleen in overleg met uw arts."
+      },
+      "algemeen": {
+        "display": "Algemene informatie",
+        "content": "Aliskiren is sinds 2007 internationaal op de markt. Het is op recept verkrijgbaar onder de merknaam Rasilez in tabletten."
+      }
+    }
   },
   {
-    "title": "azitromycine in het oog bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azitromycine-in-het-oog-bij-kinderen/kindertekst",
+    "title": "alginezuur met zuurbindende carbonaten",
+    "url": "https://www.apotheek.nl/medicijnen/alginezuur-met-zuurbindende-carbonaten",
     "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "De kuur duurt 3 dagen. Ook al zijn de klachten nog niet helemaal over, het is niet nodig om langer te druppelen. Dit komt omdat het medicijn ook na die 3 dagen nog langer doorwerkt. Houd er rekening mee dat dit een kuur is die uw kind niet mag onderbreken en moet voortzetten zolang de arts het nodig vindt. Ook al merkt uw kind van de infectie al vóór afloop van de kuur niets meer. Dit betekent nog niet dat alle bacteriën zijn verdwenen. Maar merkt uw kind na 3 dagen gebruik volgens voorschrift geen verbetering? Of worden de klachten juist erger? Stop dan het gebruik en neem contact op met de arts. Als er wat van het medicijn overblijft, gooi dat dan weg.",
     "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {
+      "wat_is_het": {
+        "display": "Wat is het",
+        "content": "De combinatie van alginezuur met zuurbindende carbonaten, zoals calciumcarbonaat, natriumwaterstofcarbonaat en magnesiumsubcarbonaat neutraliseert de maaginhoud en beschermt de maagwand. De combinatie wordt gebruikt bij maagklachten ."
+      },
+      "bijwerkingen": {
+        "display": "Bijwerkingen",
+        "content": "Behalve het gewenste effect kan dit middel bijwerkingen geven. De belangrijkste bijwerkingen zijn de volgende. Soms Zure oprispingen (boeren), opgeblazen gevoel en winderigheid, door gasvorming in de maag. Zelden Maagdarmklachten , zoals misselijkheid, diarree of juist verstopping. Zeer zelden Overgevoeligheid voor dit medicijn. Dit merkt u aan huiduitslag. In zeldzame gevallen ontstaat er koorts, opgezwollen lippen, tong of gezicht, benauwdheid of flauwvallen. Stop dan het gebruik en raadpleeg uw arts. U mag dit medicijn in de toekomst niet meer gebruiken. Geef daarom aan de apotheek door dat u overgevoelig bent voor alginezuur met zuurbindende carbonaten. Het apotheekteam kan er dan op letten dat u dit medicijn niet opnieuw krijgt. Zeer zelden , bij gebruik gedurende meerdere weken Nierstenen . Raadpleeg uw arts bij hevige pijn in de rug (nierkoliek). U heeft kans op nierstenen als u dit medicijn gedurende een aantal weken (bijna) dagelijks gebruikt. Gebruik het daarom alleen af en toe. Gebruik het niet als u al last heeft van nierstenen. Raadpleeg uw arts als u te veel last heeft van één van de bovengenoemde bijwerkingen of als u andere bijwerkingen ervaart waar u zich zorgen over maakt."
+      },
+      "vergeten": {
+        "display": "Vergeten dosis",
+        "content": "De vergeten dosis kunt u alsnog innemen, tenzij het alweer bijna tijd is om te eten. Neem het dan na het eten. Gebruik dit middel niet vaker dan eens in de 2 uur."
+      },
+      "rijvaardigheid": {
+        "display": "Rijvaardigheid en alcohol",
+        "content": "autorijden? Dit medicijn vermindert de rijvaardigheid niet. alcohol drinken? Alcohol irriteert de maag. Daarom is het gebruik van alcohol af te raden. alles eten? U kunt alles eten wat uw maag verdraagt. Bepaalde soorten voedsel zijn echter af te raden als u last heeft van uw maag. Klik voor meer informatie over wat u zelf kunt doen bij maagklachten ."
+      },
+      "interacties": {
+        "display": "Interacties met andere medicijnen",
+        "content": "In de tekst hieronder staan alleen de werkzame stoffen van deze medicijnen, dus niet de merknamen. Of uw medicijn een van die werkzame stoffen bevat, kunt u nagaan in uw bijsluiter onder het kopje 'samenstelling'. Dit medicijn bindt behalve maagzuur ook veel medicijnen. De werking van deze middelen neemt dan af. Gebruik deze medicijnen daarom alleen ruim vóór of na het maagzuurbindende medicijn. Per medicijn vindt u welke tijdsperiode veilig is. De medicijnen waarmee de belangrijkste wisselwerkingen optreden, zijn de volgende. IJzerbevattende medicijnen , zoals ferrofumaraat, ferrogluconaat, ferrosulfaat of multivitamines met ijzer. Gebruikt u ijzerbevattende medicijnen MET gereguleerde afgifte (te herkennen aan 'MGA' of 'retard')? U mag dit niet samen met deze maagzuurbinder gebruiken. Overleg met uw arts of een ijzerbevattend medicijn ZONDER gereguleerde afgifte voor u mogelijk is. Gebruikt u ijzerbevattende medicijnen ZONDER gereguleerde afgifte. Neem het medicijn met ijzer minimaal 2 uur vóór deze maagzuurbinder of 4 uur na deze maagzuurbinder. Het beste kunt u het ijzer 1 uur vóór het eten nemen en deze maagzuurbinder 1 uur erna. De schildklierhormonen levothyroxine en liothyronine. Neem deze medicijnen minimaal 2 uur vóór deze maagzuurbinder of 4 uur na deze maagzuurbinder. Penicillamine, meestal gebruikt bij reuma en de ziekte van Wilson. Neem dit medicijn minstens 2 uur vóór deze maagzuurbinder of 4 uur na deze maagzuurbinder. Triëntine , een medicijn tegen de ziekte van Wilson. Neem dit medicijn minstens 2 uur vóór deze maagzuurbinder of 4 uur na deze maagzuurbinder. Medicijnen tegen botontkalking alendroninezuur, clodroninezuur, etidroninezuur, ibandroninezuur, risedroninezuur en tiludroninezuur. Neem deze medicijnen minstens 2 uur vóór deze maagzuurbinder. Antibiotica van het chinolon-type ciprofloxacine, levofloxacine, moxifloxacine, norfloxacine en ofloxacine. Neem deze antibiotica minstens 2 uur vóór of 4 uur na deze maagzuurbinder. Het antibioticum cefuroxim en antibiotica van het tetracycline type zoals doxycycline, minocycline, demeclocycline en tetracycline. Neem deze antibiotica minstens 2 uur vóór deze maagzuurbinder of 4 uur na deze maagzuurbinder. Methenamine , een antibioticum gebruikt bij blaasontsteking. De werking van methenamine neemt af. Overleg hierover met uw arts. Mogelijk moet u een ander medicijn gebruiken. De medicijnen tegen kanker bosutinib, ceritinib, dacomitinib, dasatinib, erlotinib, gefitinib, lapatinib, neratinib en pazopanib. Neem deze medicijnen minstens 2 uur vóór deze maagzuurbinder of 4 uur na deze maagzuurbinder. Ulipristal , een morning-afterpil. De maagzuurbinder kan de betrouwbaarheid van deze morning-afterpil verminderen. Overleg hierover met uw arts. De antischimmelmiddelen ketoconazol en itraconazol. Deze antischimmelmiddelen hebben een zure maaginhoud nodig om in het bloed te worden opgenomen. Deze maagzuurbinder vermindert juist de hoeveelheid zuur in de maag, waardoor te weinig van de antischimmelmiddelen in het bloed komt. Neem deze antischimmelmiddelen minimaal 2 uur vóór deze maagzuurbinder of 4 uur na deze maagzuurbinder. Dit geldt niet voor de drank met itraconazol. Voor deze drank is geen zure maaginhoud nodig. Rosuvastatine , een cholesterolverlagend medicijn. Neem dit medicijn minimaal 2 uur vóór de maagzuurbinder. Het medicijn bij bloedingsstoornissen eltrombopag . Neem eltrombopag minstens 2 uur vóór of 4 uur na deze maagzuurbinder. Sommige medicijnen tegen hiv en hepatitis C . Vraag aan uw apotheker om welke medicijnen dit gaat. Uw apotheker kan u precies vertellen hoeveel tijd er tussen de verschillende medicijnen moet zijn en kan voor u een innameschema maken. Wordt het innameschema in uw situatie te lastig, overleg dan met uw arts. Misschien kunt u tijdelijk stoppen met dit medicijn. Of misschien kan uw arts één van beide medicijnen vervangen door een medicijn dat u wel samen mag gebruiken."
+      },
+      "zwangerschap": {
+        "display": "Zwangerschap en borstvoeding",
+        "content": "U kunt dit medicijn veilig gebruiken. Het wordt al jarenlang gebruikt door zwangere vrouwen en vrouwen die borstvoeding geven, zonder problemen voor de baby."
+      },
+      "stoppen": {
+        "display": "Stoppen met het medicijn",
+        "content": "U kunt op ieder moment in één keer met het gebruik van dit medicijn stoppen."
+      },
+      "algemeen": {
+        "display": "Algemene informatie",
+        "content": "Nee, u heeft geen recept nodig. De combinatie van alginezuur met zuurbindende carbonaten, zoals calciumcarbonaat en magnesiumsubcarbonaat is sinds 1973 op de markt. Het is in kauwtabletten zonder recept verkrijgbaar onder de merknamen Gaviscon, Gaviscon Duo en Rennie Duo."
+      }
+    }
   },
   {
-    "title": "azitromycine in het oog bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azitromycine-in-het-oog-bij-kinderen/kindertekst",
+    "title": "andexanet alfa",
+    "url": "https://www.apotheek.nl/medicijnen/andexanet-alfa",
     "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
     "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {}
   },
   {
-    "title": "acetylcysteïne bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acetylcysteine-bij-kinderen/kindertekst",
+    "title": "anagrelide",
+    "url": "https://www.apotheek.nl/medicijnen/anagrelide",
     "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Hieronder leest hoe uw kind het medicijn het beste kan gebruiken. Poeder of bruistablet : los een dosis op in een half glas water en omroeren. Los het nooit op in melk of andere dranken. Want het kan dan gaan schiften of uit elkaar vallen. Laat uw kind de oplossing onmiddellijk opdrinken. Want u kunt de oplossing niet bewaren. Laat uw kind dit middel nooit in droge vorm innemen. Want het kan zo de slokdarm ernstig beschadigen. Bruistabletten geven bij het openen van de verpakking wel eens een lichte zwavelgeur af: dit is onschuldig. Zuigtablet : in de mond laten smelten en daarna doorslikken. Tabletten: laat uw kind de tablet innemen met een half glas water. In plaats van met water kan uw kind sommige tabletten ook innemen met ander drinken. Zoals melk, limonade of vruchtensap. Of met zacht eten. Zoals appelmoes, jam of vruchtenyoghurt. Vraag aan de apotheker wat de mogelijkheden zijn. Heeft uw kind moeite met het heel doorslikken van een tablet? Bekijk dan het instructiefilmpje 'Slikken van medicijnen' . Hierin kunt u zien hoe een kind de tablet het beste kan innemen. Heeft dat onvoldoende effect? Neem dan contact op met de apotheker. Sommige tabletten mag u fijnstampen of uiteen laten vallen in water. Maar let op: er zijn ook tabletten die u niet mag fijnstampen of uiteen mag laten vallen.Omdat het medicijn dan minder goed of zelfs niet meer werkt. Soms kan het medicijn hierdoor vies smaken. Of uw kind krijgt eerder last van bijwerkingen, zoals maagklachten. Vraag dit dus eerst aan de apotheker. Blijft uw kind problemen houden met het innemen van het medicijn? Vraag dan aan de arts of apotheker of er een andere toedieningsvorm is die uw kind gemakkelijker kan innemen. Drank : goed omschudden voor gebruik. Meet de juiste hoeveelheid drank af in een maatbekertje. Laat uw kind het maatbekertje leegdrinken. Spoel het maatbekertje na met wat water en laat uw kind dat ook opdrinken. Inhalatievloeistof : uw kind gebruikt de inhalatievloeistof met een vernevelaar. U krijgt hiervoor uitleg van de arts of verpleegkundige. Zorg ervoor dat de vernevelvloeistof niet in de ogen van uw kind kan komen bij het vernevelen. Gebruik het daarom via het mondstuk, of gebruik een goed op het gezicht aansluitend vernevelmasker.",
     "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {
+      "wat_is_het": {
+        "display": "Wat is het",
+        "content": "Anagrelide remt de vorming van bloedplaatjes. Artsen schrijven het voor om het aantal rode bloedplaatjes te verlagen bij essentiële trombocytose . Hierbij maakt uw beenmerg te veel bloedplaatjes (trombocyten) aan."
+      },
+      "vergeten": {
+        "display": "Vergeten dosis",
+        "content": "Het is belangrijk om dit medicijn regelmatig in te nemen. Bent u toch een dosis vergeten? En duurt het meer dan 4 uur voor u de volgende dosis normaal inneemt? Neem de vergeten dosis dan alsnog in. Duurt het minder dan 4 uur ? Sla de vergeten dosis dan over."
+      },
+      "rijvaardigheid": {
+        "display": "Rijvaardigheid en alcohol",
+        "content": "Kan ik met dit medicijn autorijden, alcohol drinken en alles eten of drinken? Ja, dat kan. U mag autorijden, en u mag eten en drinken zoals u normaal doet."
+      },
+      "interacties": {
+        "display": "Interacties met andere medicijnen",
+        "content": "Dit medicijn heeft wisselwerkingen met andere medicijnen. In de tekst hieronder staan alleen de werkzame stoffen van deze medicijnen, dus niet de merknamen. Of uw medicijn een van die werkzame stoffen bevat, kunt u nagaan in uw bijsluiter onder het kopje 'samenstelling'. De medicijnen waarmee de belangrijkste wisselwerkingen optreden, zijn de volgende. Medicijnen met een verhoogd risico op hartritmestoornissen. Bij combinatie met anagrelide kan een ernstige hartritmestoornis ontstaan. Vooral bij vrouwen of bij mensen die ouder dan 70 jaar zijn of al een hartaandoening hebben. Overleg hierover met uw arts of apotheker. Mogelijk controleert de arts uw hart met een hartfilmpje. Of schrijft hij een ander medicijn voor. U merkt een hartritmestoornis aan plotselinge duizelingen of kortdurend buiten bewustzijn raken. Neem direct contact op met uw arts als u dit merkt."
+      },
+      "zwangerschap": {
+        "display": "Zwangerschap en borstvoeding",
+        "content": "Zwangerschap Overleg met uw arts. U kunt dit medicijn beter NIET gebruiken als u zwanger bent of binnenkort wilt worden. Er zijn niet veel zwangere vrouwen die dit medicijn hebben gebruikt. Daarom is niet zeker of dit medicijn veilig is voor de ontwikkeling van het kind. Borstvoeding Wilt u borstvoeding geven? Overleg dan met uw arts of apotheker. Het is niet bekend of dit medicijn in de moedermelk terechtkomt en of het schadelijk voor de baby is."
+      },
+      "stoppen": {
+        "display": "Stoppen met het medicijn",
+        "content": "U kunt op elk moment in één keer met dit medicijn stoppen. Wel kunt u dan weer te veel bloedplaatjes krijgen in uw bloed. Daardoor is de kans op trombose hoger. Stop daarom alleen in overleg met uw arts."
+      },
+      "algemeen": {
+        "display": "Algemene informatie",
+        "content": "Anagrelide is sinds 2003 internationaal op de markt. Het is te verkrijgen in capsules onder de merknaam Xagrid en het merkloze Anagrelide."
+      }
+    }
   },
   {
-    "title": "acetylcysteïne bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acetylcysteine-bij-kinderen/kindertekst",
+    "title": "axicabtageen ciloleucel",
+    "url": "https://www.apotheek.nl/medicijnen/axicabtageen-ciloleucel",
     "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "Heeft uw kind moeit met hoesten, bijvoorbeeld omdat hij verzwakt is, dan kan hij dit middel het het beste 's ochtends innemen. Dan kan het slijm overdag vrijkomen. 's Nachts heeft uw kind anders te veel last van hoesten.",
     "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "acetylcysteïne bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acetylcysteine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "De duur van de behandeling hangt af van de situatie en klachten van uw kind. Bij aanvallen of klachten in bepaalde periodes kan de behandeling van korte duur zijn, terwijl bij sommige chronische aandoeningen het slijm continu moet worden verdund.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "acetylcysteïne bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acetylcysteine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "algeldraat bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/algeldraat-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Laat uw kind de kauwtabletten goed kauwen voor het doorslikken. Voor een goede zuurbindende werking moet het medicijn fijn verdeeld zijn.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "algeldraat bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/algeldraat-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "Als uw kind ook andere medicijnen gebruikt, let dan op eventuele wisselwerkingen met die medicijnen. Vaak moet uw kind een paar uur wachten tussen inname van dit medicijn en het andere medicijn. Onder \"Mag ik algeldraat gebruiken met andere medicijnen?\" leest u bij welke medicijnen dit belangrijk is.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "algeldraat bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/algeldraat-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "Uw kind mag dit medicijn alleen langer dan 4 weken achter elkaar gebruiken als de arts dat heeft geadviseerd. Het is namelijk niet uit te sluiten dat er bijwerkingen zijn op de lange termijn.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "algeldraat bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/algeldraat-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "alginezuur met zuurbindende carbonaten bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/alginezuur-met-zuurbindende-carbonaten-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Hieronder vindt u per toedieningsvorm hoe uw kind het medicijn het beste kan innemen. Kauwtablet: laat het kind de tabletten opzuigen, of goed fijnkauwen voor hij ze doorslikt. Voor een goede zuurbindende werking moet het medicijn namelijk fijn verdeeld zijn. Drank: voor elk gebruik de fles goed omschudden. Gebruik voor het afmeten van de juiste hoeveelheid een maatbekertje of maatlepel.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "alginezuur met zuurbindende carbonaten bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/alginezuur-met-zuurbindende-carbonaten-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "Het hangt af van de klachten wanneer uw kind dit medicijn moet innemen. Om maagklachten te voorkomen : geef dit medicijn aan uw kind 1 uur na elke maaltijd, en voor uw kind gaat slapen. Uw kind kan tussendoor ook een dosis nemen, maar niet vaker dan eens in de 2 uur. Bij maagklachten : heeft uw kind af en toe klachten? Geeft dit medicijn dan alleen aan uw kind bij zuurbranden of pijn. Het werkt binnen een kwartier. Als uw kind ook andere medicijnen gebruikt, let dan op eventuele wisselwerkingen met die medicijnen. Vaak moet uw kind enkele uren wachten tussen inname van dit medicijn en het andere medicijn. Onder 'Mag ik alginezuur met zuurbindende carbonaten gebruiken met andere medicijnen? ' leest u bij welke medicijnen dit belangrijk is.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "alginezuur met zuurbindende carbonaten bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/alginezuur-met-zuurbindende-carbonaten-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "Raadpleeg de arts als de klachten binnen 2 weken niet verbeterd zijn of als de maagklachten juist verergeren.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "alginezuur met zuurbindende carbonaten bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/alginezuur-met-zuurbindende-carbonaten-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "azelastine in het oog bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azelastine-in-het-oog-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Oogdruppels Toedienen bij een ouder kind: zie voor de instructie de informatie over azelastine in het oog bij volwassenen . Zie ook het instructiefilmpje 'Oogdruppels bij een ander: volwassene of ouder kind' Toedienen bij een jonger kind: deze methode is geschikt als uw kind de ogen moeilijk open kan houden en nog niet zelfstandig kan zitten. Zie de beschrijving hieronder, of bekijk het instructiefilmpje 'Oogdruppels bij een ander: jong kind' . Voorbereiding Moet uw kind meerdere soorten oogdruppels gebruiken? Wacht dan minstens 5 minuten tussen het indruppelen van verschillende oogdruppels. Begin met de oogdruppels waar uw kind het minste last van heeft. Raak de druppelaar van het flesje nooit aan! Niet met de handen, maar ook niet met oog, het ooglid of de wimpers. Bij aanraking bederft de oogdruppel sneller en is eerder kans op een ooginfectie. Was uw handen met warm water en zeep. Droog ze af met een schone doek. Laat het kind op de rug liggen. Schroef de dop van het flesje en leg het dopje op de zijkant. Neem het flesje in de hand alsof u een pen vasthoudt. Toedienen van de druppels Laat het kind de ogen sluiten. Steun met de hand op de slaap en houd het flesje boven de binnenste ooghoek. Knijp in het flesje en laat een druppel in de ooghoek vallen. Laat het kind de ogen openen en een paar keer met de ogen knipperen. Voorkom dat het kind in de ogen gaat wrijven. Laat het kind de ogen weer sluiten en probeer minimaal 1 minuut de traanbuis dicht te houden. Dit kan door zachtjes de vinger in de holling tussen het oog en de neus te duwen (net onder het bobbeltje in de ooghoek). De werkzame stof in deze oogdruppels kan anders te snel uit het oog verdwijnen doordat het via het traankanaaltje in de neusholte wegloopt. Laat het kind daarna rustig de ogen openen. Voor het kind is de behandeling nu klaar. Na het toedienen van de druppels Schroef de dop terug op het flesje. Was de handen nogmaals met warm water en zeep. Droog ze af met een schone doek. Oogdruppelhulp Vindt u het lastig om de druppel goed in het oog te krijgen? Vraag dan in de apotheek om een oogdruppelhulp. Dit is een houdertje waarmee u gemakkelijker in het oog kunt druppelen. Bewaaradvies en houdbaarheid Bewaar de oogdruppels of oogzalf zoals op het etiket is aangegeven. De meeste oogdruppels en oogzalven zijn na openen nog 1 maand houdbaar . U kunt op de verpakking noteren wanneer u het heeft aangebroken.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "azelastine in het oog bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azelastine-in-het-oog-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "Het beste kunt u de oogdruppels 's ochtends en 's avonds bij uw kind toedienen. Moet uw kind het vaker gebruiken, verdeel dan de overige doseringen zo goed mogelijk over de dag om een constant effect te verkrijgen.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "azelastine in het oog bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azelastine-in-het-oog-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "Laat uw kind dit middel gebruiken zolang het klachten heeft. Mocht uw kind na 3 dagen gebruik geen verbetering merken, dan heeft het waarschijnlijk geen baat bij dit middel. Overleg dan met de arts.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "azelastine in het oog bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azelastine-in-het-oog-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "acenocoumarol bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acenocoumarol-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Laat uw kind de tablet heel innemen met een half glas water, zonder te kauwen. Om te voorkomen dat dit medicijn tussen de tanden en kiezen achterblijft en daardoor niet wordt opgenomen in het lichaam. In plaats van met water kan uw kind sommige tabletten ook innemen met ander drinken. Zoals melk, limonade of vruchtensap. Of met zacht eten. Zoals appelmoes, jam of vruchtenyoghurt. Vraag aan de apotheker wat de mogelijkheden zijn. Heeft uw kind moeite met het heel doorslikken van een tablet? Bekijk dan het instructiefilmpje 'Slikken van medicijnen' . Hierin kunt u zien hoe een kind de tablet het beste kan innemen. Werkt dat onvoldoende? Neem dan contact op met de apotheker. Sommige tabletten mag u fijnstampen. Maar let op: er zijn ook tabletten die u niet mag fijnstampen. Omdat het medicijn dan minder goed of zelfs niet meer werkt. Soms kan het medicijn hierdoor vies smaken. Of uw kind krijgt eerder last van bijwerkingen, zoals maagklachten. Vraag dit dus eerst aan de apotheker.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "acenocoumarol bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acenocoumarol-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "Laat uw kind het medicijn elke dag aan het eind van de middag of begin van de avond innemen. Zo kan uw kind wijzigingen in de dosering door de trombosedienst nog dezelfde dag opvolgen. Uw kind kan de tabletten voor, tijdens en na het eten innemen. Voedsel heeft nauwelijks invloed op de opname in het lichaam. Uw kind mag met dit medicijn alles eten. Maar sommig eten met veel vitamine K kunnen de werking van dit medicijn minder maken. Dit zijn bijvoorbeeld andijvie, spinazie, groenekool, broccoli en sla. Laat uw kind dit daarom niet te vaak eten.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "acenocoumarol bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acenocoumarol-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "Dit hangt af van de situatie van uw kind. In de meer acute situaties duurt de behandeling 1,5 tot 3 maanden. Maar het kan ook jaren zijn, soms zelfs levenslang. Zorg dat uw kind het medicijn dus trouw gebruikt, zolang de arts het nodig vindt. Zonder dit medicijn loopt uw kind de kans dat zijn bloed (weer) te dik wordt. Of dat er stolsels ontstaan die de kleine bloedvaten kunnen afsluiten.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "acenocoumarol bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/acenocoumarol-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "alprazolam bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/alprazolam-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Laat uw kind de tabletten innemen met een half glas water. In plaats van met water kan uw kind sommige tabletten ook innemen met bijvoorbeeld melk, limonade of vruchtensap, of met zacht voedsel zoals een lepel appelmoes, jam of vruchtenyoghurt. Vraag na bij de apotheker wat de mogelijkheden zijn . Heeft uw kind moeite met het heel doorslikken van een tablet? Bekijk dan het instructiefilmpje 'Slikken van medicijnen' . Hierin kunt u zien hoe een kind de tablet het beste kan innemen. Heeft dat onvoldoende effect? Neem dan contact op met de apotheker. Sommige tabletten mag u fijnstampen. Maar let op: er zijn ook tabletten die u niet mag fijnstampen omdat het medicijn dan minder goed of zelfs niet meer werkt. Soms kan door het fijnmaken het medicijn vies smaken. Of uw kind krijgt eerder last van bijwerkingen, zoals maagklachten. Vraag dit dus eerst aan de apotheker.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "alprazolam bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/alprazolam-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "Angst en spanning Verdeel de tabletten gelijkmatig over de dag. Dus bij 3 keer per dag om de 8 uur. Gebruikt uw kind dit medicijn alleen in speciale gevallen, zoals bij vliegangst? Laat uw kind het dan ongeveer 1 uur van tevoren innemen. Medische ingrepen of onderzoeken Uw arts heeft aangegeven hoeveel tijd van te voren uw kind dit medicijn moet innemen. Slapeloosheid Laat uw kind het medicijn ten minste een halfuur tot 1 uur voor hij wil gaan slapen innemen. Laat uw kind het alleen innemen als hij minstens 8 uur de tijd heeft om te slapen. Als uw kind voor die tijd wakker moet worden, zal hij nog te veel last van de versuffende werking hebben.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "alprazolam bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/alprazolam-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "Angst, spanning en Slapeloosheid Gebruik langer dan 2 maanden achter elkaar wordt sterk afgeraden. Er is dan te veel kans dat uw kind afhankelijk wordt van dit medicijn. Dit betekent dat uw kind ontwenningsverschijnselen krijgt als hij stopt met het gebruik. Probeer ook op een andere manier de angst en spanning van uw kind te verminderen. Vraag de arts om advies. Medische ingrepen of onderzoeken Uw kind gebruikt alprazolam alleen voor de ingreep of het onderzoek.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "alprazolam bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/alprazolam-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "azijnzuur en triamcinolonacetonide in het oor bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azijnzuur-en-triamcinolonacetonide-in-het-oor-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Raak de druppelaar van het flesje nooit aan! Dus ook niet met de handen. Bij aanraking bederft de oordruppel sneller en kan de oorinfectie erger worden. Als de arts bij uw kind een opgerold gaasje of oortampon doordrenkt met oordruppel oplossing heeft ingebracht Houd het gaasje of de oortampon vochtig door regelmatig (ongeveer 6 tot 8 keer per dag) met de oordruppels te druppelen. De arts adviseert u meestal het gaasje of de oortampon na 24 uur te verwisselen. Bij gebruik zonder gaasje of oortampon Houd het druppelflesje enige tijd in uw hand om de vloeistof wat op te warmen . Draai het dopje van de druppelaar af en leg het op de zijkant. Laat uw kind op de zij liggen , of het hoofd opzij houden. Trek het oor naar boven en naar achteren. Trek het oor bij kinderen jonger dan 6 jaar naar onderen en naar achteren. Houd de druppelaar boven de gehoorgang en laat de druppels in het oor vallen. Laat uw kind het hoofd nog 3 tot 5 minuten opzij houden, zodat de druppels alle plekken de gehoorgang kunnen bereiken. Eventueel kunt u daarna het uitlopen van de vloeistof tegengaan door een watje in het oor te doen. Draai direct na gebruik de dop weer op het flesje. Bewaar de oordruppels zoals op het etiket is aangegeven. Onaangebroken zijn de oordruppels houdbaar tot de uiterste gebruiksdatum die op het etiket staat. Na openen zijn de oordruppels meestal 6 maanden houdbaar. Een kuur duurt echter meestal korter. Gooi de inhoud na afloop van de kuur weg.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "azijnzuur en triamcinolonacetonide in het oor bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azijnzuur-en-triamcinolonacetonide-in-het-oor-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "U kunt het indruppelen het beste zo goed mogelijk verdelen over de dag voor een constant effect.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "azijnzuur en triamcinolonacetonide in het oor bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azijnzuur-en-triamcinolonacetonide-in-het-oor-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "Uw kind mag dit medicijn gebruiken zo lang hij klachten heeft. Meestal is 1 tot 2 weken voldoende.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "azijnzuur en triamcinolonacetonide in het oor bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/azijnzuur-en-triamcinolonacetonide-in-het-oor-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "atomoxetine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/atomoxetine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe?",
-    "section": "overig",
-    "content": "Laat uw kind de capsules heel innemen met een half glas water of andere drank, zoals melk, limonade of vruchtensap. Bij misselijkheid mag uw kind dit medicijn ook innemen met wat zacht voedsel zoals een lepel appelmoes, jam of vruchtenyoghurt. Heeft uw kind moeite met het heel doorslikken van een capsule? Bekijk dan het instructiefilmpje 'Slikken van medicijnen' . Hierin kunt u zien hoe uw kind de capsule het beste kan innemen.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "atomoxetine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/atomoxetine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Wanneer?",
-    "section": "waarschuwingen",
-    "content": "Meestal raadt de arts uw kind aan om de dagdosering in 1 keer 's ochtends in te nemen. Mocht het medicijn niet de hele dag werken of heeft uw kind te veel bijwerkingen? Dan kan uw kind de dagdosis ook in 2 keer innemen: een deel 's ochtends en een deel aan het eind van de middag of begin van de avond.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "atomoxetine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/atomoxetine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Hoe lang?",
-    "section": "overig",
-    "content": "Na een paar weken kunnen u en de arts meestal beoordelen of de behandeling werkt. Om dat te beoordelen, is het verstandig ook zelf bij te houden wat het effect van de behandeling is. Bijvoorbeeld door het gedrag van het kind elke dag een cijfer te gven. Gemiddeld gebruiken kinderen dit medicijn een paar jaar. Ergens tussen hun zesde levensjaar en het begin van de puberteit. Maar de ADHD kan ook na de puberteit blijven bestaan. Dan is langer gebruik van atomoxetine nodig.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "atomoxetine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/atomoxetine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Soms (bij 10 tot 30 op de 100 mensen)",
-    "section": "overig",
-    "content": "Hoofdpijn Suf en slaperig zijn Hierdoor kan uw kind minder goed reageren, concentreren en coördineren. Dit is vooral lastig bij activiteiten waarbij het kind moet opletten, zoals fietsen, spelen, leren of op school. Heeft uw kind hier veel last van? Bespreek dit dan met de arts. Klachten van de maag en darmen, zoals buikpijn, minder eetlust, misselijk zijn en overgeven. Zelden verstopping en zuurbranden optreden. Wordt uw kind misselijk? Dan kan hij/zij proberen dit medicijn bij het eten in te nemen. Dan is de kans op misselijk worden kleiner. Raadpleeg uw arts als uw kind niet genoeg eet. Heeft uw kind veel last van klachten van de maag en darmen? Overleg dan met de arts. Hogere bloeddruk en hartkloppingen De arts zal voordat de behandeling begint de hartslag en bloeddruk van uw kind controleren. En ook regelmatig tijdens de behandeling (ten minste elk half jaar).",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "atomoxetine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/atomoxetine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Zelden (bij 1 tot 10 op de 100 mensen)",
-    "section": "overig",
-    "content": "Duizelig worden Psychische klachten, zoals depressie, onrustig voelen, irritatie, stemmingswisselingen en angst. Zeer zelden kan agressie, vijandigheid en waandenkbeelden, hallucinaties ontstaan of uw kind kan ernstig in de war zijn (psychosen). Ook kunnen zeer zelden gedachten aan zelfmoord ontstaan. Merkt u dit? Neem dan direct contact op met de arts. Kinderen die hier eerder last van hebben gehad, moeten bij gebruik van dit medicijn extra in de gaten worden gehouden. Of kinderen die eerder gedachten aan zelfmoord hebben gehad of een zelfmoordpoging hebben gedaan, moeten bij gebruik van dit medicijn extra in de gaten worden gehouden. Sommige kinderen worden extra prikkelbaar en zijn snel uit hun evenwicht. Overleg met de behandelend arts als u vindt dat deze extra prikkelbaarheid niet opweegt tegen de verbetering in concentratie en aandacht van uw kind. Mogelijk kan een lagere dosering worden gegeven. Ontsteking van de huid . Uw kind kan last hebben van een rode huid, jeuk, bultjes, blaasjes of schilfers op de huid. Pupilverwijding Raadpleeg de arts als uw kind hier last van blijft houden. Slapeloosheid en moe zijn. Huiduitslag en jeuk. Tics Dit zijn willekeurige, onvrijwillige bewegingen of geluiden.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "atomoxetine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/atomoxetine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Zeer zelden (bij minder dan 1 op de 100 mensen)",
-    "section": "overig",
-    "content": "Sneller last van koude handen en voeten. De tast en de huid van de handen en voeten voelen anders aan. Dit komt omdat de bloedvaten nauwer zijn geworden. Het kan zijn dat uw kind hier last van blijft houden zolang hij het medicijn slikt. Zorg voor voldoende bescherming tegen kou door warme kleding te dragen, zoals wanten en sokken. Vooral kinderen met de ziekte van Raynaud merken deze bijwerking doordat ze meer last krijgen van koude vingers en tenen. Neem contact op met de arts als deze bijwerking te veel last geeft. Een verhoogd risico op hartritmestoornissen. Uw kind kan last krijgen van plotselinge duizelingen of even buiten bewustzijn raken. Vooral kinderen met de hartritmestoornis verlengd QT-interval hebben hier meer kans op. Laat uw kind dit medicijn NIET gebruiken als hij deze hartritmestoornis heeft. Overleg hierover met de arts. Overleg tevens met de arts als uw kind een andere hartafwijking heeft. Leveraandoeningen. Uw kind kan dit merken aan een gevoelige, opgezwollen buik. Of een gele verkleuring van het oogwit of van de huid en een donkere plas. Heeft uw kind last van deze klachten? Neem dan meteen contact op met de arts. Overgevoeligheid. Dit merkt uw kind aan huiduitslag, galbulten en jeuk. Laat uw kind dit medicijn dan niet meer gebruiken. Een ernstige overgevoeligheid is te merken aan een zwelling van het gezicht, lippen, mond, tong of keel. Uw kind kan hierbij erg benauwd worden. Ga dan onmiddellijk naar een arts. In beide gevallen mag uw kind dit medicijn in de toekomst niet meer gebruiken. Geef daarom aan de apotheek door dat uw kind overgevoelig is voor atomoxetine. Het apotheekteam kan er dan op letten dat uw kind dit medicijn of soortgelijke medicijnen niet opnieuw krijgt. Problemen met plassen zoals niet kunnen plassen. Neem contact op met de arts als uw kind hier last van heeft. Migraine Overleg met de arts als uw kind hier last van heeft. Krachteloosheid Trillen en beven Veel zweten Doof of tintelend gevoel in handen of voeten. Bij jongens: langdurige en soms pijnlijke erectie . Als deze pijnlijke erectie langer dan 4 uur duurt, moet u uw arts waarschuwen. Er bestaat dan een kleine kans op beschadiging van de zwellichamen in de penis.",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "atomoxetine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/atomoxetine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Onbekend",
-    "section": "overig",
-    "content": "Vertraging van de groei. Uw arts zal tijdens de behandeling de groei en het gewicht van uw kind controleren. Als het nodig is zal de arts de dosering van het medicijn aanpassen. Heeft uw kind last van een bijwerking? Meld dit dan bij het bijwerkingencentrum lareb. Hier worden alle meldingen over bijwerkingen van medicijnen in Nederland verzameld. Ik wil een bijwerking melden",
-    "type": "drug",
-    "language": "nl"
-  },
-  {
-    "title": "atomoxetine bij kinderen",
-    "url": "https://www.apotheek.nl/medicijnen/atomoxetine-bij-kinderen/kindertekst",
-    "source": "apotheek.nl",
-    "section_raw": "Disclaimer",
-    "section": "overig",
-    "content": "Deze tekst is geschreven door het Geneesmiddel Informatie Centrum van de KNMP. Voor het opstellen van deze teksten is gebruik gemaakt van het Kinderformularium van het NKFK en andere wetenschappelijke bronnen. Hoewel bij het opstellen van de tekst uiterste zorgvuldigheid is betracht, is de KNMP niet aansprakelijk voor eventuele schade die zou kunnen voortvloeien uit enige onjuistheid in deze tekst.",
-    "type": "drug",
-    "language": "nl"
+    "language": "nl",
+    "sections": {}
   }
 ]

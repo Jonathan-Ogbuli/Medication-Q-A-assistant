@@ -2,34 +2,47 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import json
+import string
 import hashlib
 
 BASE_URL = "https://www.apotheek.nl"
-START_URL = f"{BASE_URL}/medicijnen?letter=a"
-
 HEADERS = {
     "User-Agent": "MedicationRAGBot/1.0 (educational project)"
 }
-
-DELAY = 1.5  # polite delay
+DELAY = 0
 
 
 # -----------------------------
 # Helpers
 # -----------------------------
-def normalize_section(name: str) -> str:
-    name = name.lower()
+SECTION_DISPLAY = {
+    "wat_is_het": "Wat is het",
+    "waarvoor": "Waar is het voor",
+    "bijwerkingen": "Bijwerkingen",
+    "gebruik": "Hoe gebruik je het",
+    "vergeten": "Vergeten dosis",
+    "rijvaardigheid": "Rijvaardigheid en alcohol",
+    "interacties": "Interacties met andere medicijnen",
+    "zwangerschap": "Zwangerschap en borstvoeding",
+    "lever_nier": "Bij lever- of nierproblemen",
+    "stoppen": "Stoppen met het medicijn",
+    "algemeen": "Algemene informatie",
+    "overig": "Overige informatie",
+}
 
-    if "bijwerking" in name:
-        return "bijwerkingen"
-    if "gebruik" in name or "hoe gebruik" in name:
-        return "gebruik"
-    if "waarvoor" in name:
-        return "indicatie"
-    if "wanneer" in name:
-        return "waarschuwingen"
-
-    return "overig"
+SECTIONS_MAP = {
+    "intro": "wat_is_het",
+    "conditions": "waarvoor",
+    "sideEffects": "bijwerkingen",
+    "instructions": "gebruik",
+    "forgotten": "vergeten",
+    "forbidden": "rijvaardigheid",
+    "interaction": "interacties",
+    "pregnancy": "zwangerschap",
+    "reducedKidneyLiverFunction": "lever_nier",
+    "quitting": "stoppen",
+    "information": "algemeen",
+}
 
 
 def hash_text(text: str) -> str:
@@ -40,25 +53,50 @@ def hash_text(text: str) -> str:
 # Step 1: Get medication links
 # -----------------------------
 def get_medication_links(limit=10):
-    res = requests.get(START_URL, headers=HEADERS)
-    res.raise_for_status()
-
-    soup = BeautifulSoup(res.text, "html.parser")
-
+    letters = list(string.ascii_lowercase) + ["0-9"]
     links = set()
 
-    for a in soup.select("a"):
-        href = a.get("href")
-        if href and "/medicijnen/" in href:
-            full_url = href if href.startswith("http") else BASE_URL + href
-            links.add(full_url)
+    for letter in letters:
+        url = f"{BASE_URL}/medicijnen?letter={letter}"
+        print(f"Fetching index: {url}")
 
-    links = list(links)
+        try:
+            res = requests.get(url, headers=HEADERS)
+            if res.status_code != 200:
+                continue
 
-    # Basic filtering (avoid index/self links)
-    links = [l for l in links if l.count("/") > 4]
+            soup = BeautifulSoup(res.text, "html.parser")
 
-    return links[:limit]
+            for a in soup.select("a[href]"):
+                href = a.get("href")
+
+                if not href:
+                    continue
+
+                # Match real medication pages
+                if (
+                    "/medicijnen/" in href
+                    # and "?" not in href
+                    and "bij-kinderen" not in href
+                    and "kindertekst" not in href
+                    ):
+                    full_url = href if href.startswith("http") else BASE_URL + href
+
+                    # Avoid navigation links and duplicates
+                    # Keep only real drug pages (2-3 slashes in relative path)
+                    slash_count = full_url.count("/")
+                    if slash_count >= 3 and slash_count <= 5:
+                        links.add(full_url)
+
+            time.sleep(DELAY)
+
+            if len(links) >= limit:
+                break
+
+        except Exception as e:
+            print("Error:", e)
+
+    return list(links)[:limit]
 
 
 # -----------------------------
@@ -70,60 +108,51 @@ def parse_medication_page(url):
 
     soup = BeautifulSoup(res.text, "html.parser")
 
-    title_tag = soup.find("h1")
-    if not title_tag:
+    next_data = soup.find('script', {'id': '__NEXT_DATA__'})
+    if not next_data:
         return []
 
-    title = title_tag.get_text(strip=True)
+    data = json.loads(next_data.string)
+    medicine = data.get('props', {}).get('pageProps', {}).get('medicine', {})
 
-    chunks = []
-    seen_hashes = set()
+    title = medicine.get('title', '')
+    if not title:
+        return []
 
-    # Sections = h2 / h3 blocks
-    for section in soup.select("h2, h3"):
-        section_title = section.get_text(strip=True)
+    sections = {}
 
-        content_parts = []
-
-        for sib in section.find_next_siblings():
-            if sib.name in ["h2", "h3"]:
-                break
-            text = sib.get_text(" ", strip=True)
-            if text:
-                content_parts.append(text)
-
-        content = " ".join(content_parts).strip()
-
-        # Filter noise
-        if len(content) < 80:
+    for section_key, section_name in SECTIONS_MAP.items():
+        content = medicine.get(section_key, '')
+        if not content or len(content) < 50:
             continue
 
-        content_hash = hash_text(content)
-        if content_hash in seen_hashes:
+        content_text = BeautifulSoup(content, 'html.parser').get_text(' ', strip=True)
+
+        if len(content_text) < 50:
             continue
-        seen_hashes.add(content_hash)
 
-        chunks.append({
-            "title": title,
-            "url": url,
-            "source": "apotheek.nl",
-            "section_raw": section_title,
-            "section": normalize_section(section_title),
-            "content": content,
-            "type": "drug",
-            "language": "nl"
-        })
+        sections[section_name] = {
+            "display": SECTION_DISPLAY.get(section_name, section_name),
+            "content": content_text
+        }
 
-    return chunks
+    return [{
+        "title": title,
+        "url": url,
+        "source": "apotheek.nl",
+        "type": "drug",
+        "language": "nl",
+        "sections": sections
+    }]
 
 
 # -----------------------------
-# Step 3: Main scrape function
+# Step 3: Main
 # -----------------------------
 def scrape_dataset(limit=10):
     links = get_medication_links(limit=limit)
 
-    print(f"Found {len(links)} medication links")
+    print(f"\nCollected {len(links)} medication links\n")
 
     dataset = []
 
@@ -141,9 +170,6 @@ def scrape_dataset(limit=10):
     return dataset
 
 
-# -----------------------------
-# Run
-# -----------------------------
 if __name__ == "__main__":
     data = scrape_dataset(limit=10)
 
