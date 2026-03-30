@@ -49,6 +49,65 @@ def hash_text(text: str) -> str:
     return hashlib.md5(text.encode("utf-8")).hexdigest()
 
 
+SECTION_TAGS = {
+    "wat_is_het": ["description", "definition", "what-is-it"],
+    "waarvoor": ["indications", "uses", "conditions-treated"],
+    "bijwerkingen": ["side-effects", "adverse-reactions", "safety"],
+    "gebruik": ["dosage", "instructions", "how-to-use"],
+    "vergeten": ["missed-dose", "compliance"],
+    "rijvaardigheid": ["driving", "alcohol", "lifestyle"],
+    "interacties": ["interactions", "drug-interactions", "contraindications"],
+    "zwangerschap": ["pregnancy", "breastfeeding", "fertility"],
+    "lever_nier": ["organ-impairment", "kidney", "liver"],
+    "stoppen": ["discontinuation", "withdrawal"],
+    "algemeen": ["general", "availability", "market-info"],
+}
+
+SECTION_INTENT = {
+    "wat_is_het": "description",
+    "waarvoor": "usage",
+    "bijwerkingen": "side_effects",
+    "gebruik": "usage",
+    "vergeten": "usage",
+    "rijvaardigheid": "usage",
+    "interacties": "side_effects",
+    "zwangerschap": "side_effects",
+    "lever_nier": "side_effects",
+    "stoppen": "usage",
+    "algemeen": "description",
+}
+
+CONTENT_KEYWORDS = {
+    "cardiovascular": ["hart", "bloeddruk", "cholesterol", "ritme", "trombose", "vaat", "hartinfarct", "bijnier"],
+    "pain": ["pijn", "pijnstiller", "hoofdpijn", "spierpijn"],
+    "infection": ["infectie", "bacterie", "virus", "schimmel", "antibioticum", "ontsteking"],
+    "mental_health": ["depressie", "angst", "slaap", "psych", "stemming", "epilepsie", "aanval"],
+    "diabetes": ["diabetes", "bloedsuiker", "glucose", "insuline"],
+    "hormonal": ["hormoon", "schildklier", "bijnier", "oestrogeen", "testosteron"],
+    "respiratory": ["luchtweg", "astma", "COPD", "ademhaling", "neus", "long"],
+    "digestive": ["maag", "darm", "misselijk", "braken", "diarree", "levert"],
+    "skin": ["huid", "eczeem", "uitslag", "jeuk"],
+    "immune": ["immuun", "allergie", "overgevoelig", "ontsteking"],
+    "cancer": ["kanker", "tumor", "celdeling", "chemo"],
+    "reproductive": ["zwanger", "borstvoeding", "vruchtbaar", "menstruatie", "overgang"],
+    "children": ["kinderen", "baby", "jong", "geboorte"],
+}
+
+
+def extract_metadata_tags(content: str, section: str) -> list:
+    tags = []
+    
+    if section in SECTION_TAGS:
+        tags.extend(SECTION_TAGS[section])
+    
+    content_lower = content.lower()
+    for category, keywords in CONTENT_KEYWORDS.items():
+        if any(kw in content_lower for kw in keywords):
+            tags.append(category)
+    
+    return list(set(tags))
+
+
 # -----------------------------
 # Step 1: Get medication links
 # -----------------------------
@@ -136,14 +195,23 @@ def parse_medication_page(url):
             "content": content_text
         }
 
-    return [{
-        "title": title,
-        "url": url,
-        "source": "apotheek.nl",
-        "type": "drug",
-        "language": "nl",
-        "sections": sections
-    }]
+    chunks = []
+    for section_name, section_data in sections.items():
+        content = section_data["content"]
+        chunks.append({
+            "title": title,
+            "section": section_name,
+            "section_display": section_data["display"],
+            "content": content,
+            "intent": SECTION_INTENT.get(section_name, "general"),
+            "search_text": f"{title}. {section_data['display']}. {content}",
+            "url": url,
+            "source": "apotheek.nl",
+            "type": "drug",
+            "language": "nl",
+            "tags": extract_metadata_tags(content, section_name),
+        })
+    return chunks
 
 
 # -----------------------------
