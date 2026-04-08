@@ -1,14 +1,14 @@
 import json
+import os
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
-import requests
 
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 INDEX_PATH = "medication_faiss.index"
 METADATA_PATH = "metadata.json"
-OLLAMA_URL = "http://localhost:11434/api/generate"
-OLLAMA_MODEL = "tinyllama"
+
+GROQ_MODEL = "llama-3.1-8b-instant"
 
 
 def load_index(index_path=INDEX_PATH, metadata_path=METADATA_PATH):
@@ -24,7 +24,7 @@ def embed_query(query):
     return embedding
 
 
-def retrieve(query, top_k=3, index=None, metadata=None):
+def retrieve(query, top_k=5, index=None, metadata=None):
     if index is None or metadata is None:
         index, metadata = load_index()
     
@@ -61,37 +61,46 @@ def format_retrieved_results(results):
     return output
 
 
-def generate_response(query, retrieved_chunks, model=OLLAMA_MODEL, url=OLLAMA_URL):
+def generate_response(query, retrieved_chunks, model=GROQ_MODEL):
     try:
-        prompt = build_prompt(query, retrieved_chunks)
+        from groq import Groq
         
-        payload = {
-            "model": model,
-            "prompt": prompt,
-            "stream": False,
-            "options": {
-                "temperature": 0.0,
-                "top_p": 0.1,
-                "num_ctx": 256,
-                "repeat_penalty": 1.0,
-                "num_predict": 60
-            }
-        }
+        client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
         
-        response = requests.post(url, json=payload, timeout=120)
-        response.raise_for_status()
+        context = "\n\n".join([r["content"] for r in retrieved_chunks])
         
-        return response.json()["response"]
-    except requests.exceptions.ConnectionError:
-        print("Error: Ollama is not running. Start it with: ollama serve")
-        print("Then pull the model: ollama pull phi3")
-        return None
+        prompt = f"""Je hebt informatie over medicijnen. Gebruik de onderstaande context om de vraag te beantwoorden.
+
+Context:
+{context}
+
+Instructies:
+- Als de context informatie bevat over het medicijn dat in de vraag wordt genoemd, gebruik die informatie dan om de vraag te beantwoorden.
+- Als de context GEEN informatie bevat over het medicijn uit de vraag, zeg dan: "Ik heb geen informatie hierover in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
+- Verzin geen informatie.
+
+Vraag: {query}
+Antwoord:"""
+        
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                }
+            ],
+            model=model,
+            temperature=0.0,
+            max_tokens=500,
+        )
+        
+        return chat_completion.choices[0].message.content
     except Exception as e:
         print(f"Error generating response: {e}")
         return None
 
 
-def rag_query(query, top_k=3, use_llm=True):
+def rag_query(query, top_k=5, use_llm=True):
     print(f"Retrieving for query: {query}")
     results = retrieve(query, top_k=top_k)
     
@@ -118,7 +127,7 @@ if __name__ == "__main__":
         query = input("Enter query: ")
     
     use_llm = "--no-llm" not in sys.argv
-    top_k = 3
+    top_k = 5
     
     for arg in sys.argv:
         if arg.startswith("--top_k="):
