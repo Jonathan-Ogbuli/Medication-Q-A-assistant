@@ -77,7 +77,12 @@ Context:
 Instructies:
 - Als de context informatie bevat over het medicijn dat in de vraag wordt genoemd, gebruik die informatie dan om de vraag te beantwoorden.
 - Als de context GEEN informatie bevat over het medicijn uit de vraag, zeg dan: "Ik heb geen informatie hierover in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
+- Als er gevraagd wordt naar medicatie die niet in de dataset of context voorkomt, zeg dan: "Ik heb geen informatie hierover in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
 - Verzin geen informatie.
+- Geef altijd duidelijk aan dat je een AI bent en geen arts, verpleegkundige of andere medische professional.
+- Vermeld expliciet dat de gegeven informatie alleen bedoeld is voor educatieve of informatieve doeleinden en geen vervanging is voor professioneel medisch advies, diagnose of behandeling.
+- Geef aan dat de informatie mogelijk onvolledig, verouderd of onjuist kan zijn.
+- Adviseer gebruikers om bij een medische noodsituatie onmiddellijk contact op te nemen met hulpdiensten of naar de spoedeisende hulp te gaan.
 
 Vraag: {query}
 Antwoord:"""
@@ -101,8 +106,8 @@ Antwoord:"""
 
 
 def rag_query(query, top_k=5, use_llm=True):
-    print(f"Retrieving for query: {query}")
     results = retrieve(query, top_k=top_k)
+    print(f"Retrieving for query: {query}")
     
     print(f"Found {len(results)} results:")
     for i, r in enumerate(results):
@@ -136,7 +141,7 @@ if __name__ == "__main__":
     result = rag_query(query, top_k=top_k, use_llm=use_llm)
     
     if "answer" in result:
-        print("\n" + "="*50)
-        print("ANTWOORD:")
-        print("="*50)
+        # print("\n" + "="*50)
+        # print("ANTWOORD:")
+        # print("="*50)
         print(result["answer"])
