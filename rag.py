@@ -1,50 +1,61 @@
 import json
 import os
 import numpy as np
-import faiss
 from sentence_transformers import SentenceTransformer
+from pinecone import Pinecone
+from dotenv import load_dotenv
+
+load_dotenv()
 
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-INDEX_PATH = "medication_faiss.index"
-METADATA_PATH = "metadata.json"
+INDEX_NAME = "medication-index"
 
 GROQ_MODEL = "llama-3.1-8b-instant"
 
+pinecone_client = None
+pinecone_index = None
 
-def load_index(index_path=INDEX_PATH, metadata_path=METADATA_PATH):
-    index = faiss.read_index(index_path)
-    with open(metadata_path, "r", encoding="utf-8") as f:
-        metadata = json.load(f)
-    return index, metadata
+
+def get_pinecone_index():
+    global pinecone_client, pinecone_index
+    if pinecone_client is None:
+        pinecone_client = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
+        pinecone_index = pinecone_client.Index(INDEX_NAME)
+    return pinecone_index
 
 
 def embed_query(query):
     model = SentenceTransformer(EMBEDDING_MODEL)
     embedding = model.encode([query]).astype("float32")
-    return embedding
+    return embedding[0].tolist()
 
 
-def retrieve(query, top_k=5, index=None, metadata=None):
-    if index is None or metadata is None:
-        index, metadata = load_index()
+def retrieve(query, top_k=5):
+    index = get_pinecone_index()
     
     query_embedding = embed_query(query)
-    distances, indices = index.search(query_embedding, top_k)
     
-    results = []
-    for dist, idx in zip(distances[0], indices[0]):
-        if idx != -1:
-            results.append({
-                "distance": float(dist),
-                "title": metadata[idx]["title"],
-                "section": metadata[idx]["section"],
-                "content": metadata[idx]["content"],
-                "intent": metadata[idx]["intent"],
-                "url": metadata[idx]["url"],
-                "tags": metadata[idx]["tags"],
-            })
+    results = index.query(
+        vector=query_embedding,
+        top_k=top_k,
+        include_metadata=True,
+        include_values=False
+    )
     
-    return results
+    retrieved_results = []
+    for match in results.matches:
+        meta = match.metadata
+        retrieved_results.append({
+            "distance": match.score,
+            "title": meta.get("title", ""),
+            "section": meta.get("section", ""),
+            "content": meta.get("content", ""),
+            "intent": meta.get("intent", ""),
+            "url": meta.get("url", ""),
+            "tags": json.loads(meta.get("tags", "[]")),
+        })
+    
+    return retrieved_results
 
 
 def build_prompt(query, retrieved_chunks):
@@ -106,12 +117,12 @@ Antwoord:"""
 
 
 def rag_query(query, top_k=5, use_llm=True):
-    results = retrieve(query, top_k=top_k)
-    print(f"Retrieving for query: {query}")
+    results = retrieve(query=query, top_k=top_k)
+    # print(f"Retrieving for query: {query}")
     
-    print(f"Found {len(results)} results:")
-    for i, r in enumerate(results):
-        print(f"  {i+1}. [{r['section']}] {r['title']} (distance: {r['distance']:.2f})")
+    # print(f"Found {len(results)} results:")
+    # for i, r in enumerate(results):
+    #     print(f"  {i+1}. [{r['section']}] {r['title']} (distance: {r['distance']:.2f})")
     
     if use_llm:
         print("Generating response...")
