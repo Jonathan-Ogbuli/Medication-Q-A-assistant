@@ -9,7 +9,7 @@ BASE_URL = "https://www.apotheek.nl"
 HEADERS = {
     "User-Agent": "MedicationRAGBot/1.0 (educational project)"
 }
-DELAY = 0
+DELAY = 1.0
 
 
 # -----------------------------
@@ -217,12 +217,13 @@ def parse_medication_page(url):
 # -----------------------------
 # Step 3: Main
 # -----------------------------
-def scrape_dataset(limit=10):
+def scrape_dataset(limit=10000, batch_save=50):
     links = get_medication_links(limit=limit)
 
     print(f"\nCollected {len(links)} medication links\n")
 
     dataset = []
+    scraped_urls = set()
 
     for i, link in enumerate(links):
         print(f"[{i+1}/{len(links)}] Scraping: {link}")
@@ -230,8 +231,14 @@ def scrape_dataset(limit=10):
         try:
             chunks = parse_medication_page(link)
             dataset.extend(chunks)
+            scraped_urls.add(link)
         except Exception as e:
             print(f"Error scraping {link}: {e}")
+
+        if (i + 1) % batch_save == 0:
+            with open("apotheek_dataset_partial.json", "w", encoding="utf-8") as f:
+                json.dump(dataset, f, ensure_ascii=False, indent=2)
+            print(f"  -> Saved {len(dataset)} chunks so far (batch save)\n")
 
         time.sleep(DELAY)
 
@@ -239,7 +246,7 @@ def scrape_dataset(limit=10):
 
 
 if __name__ == "__main__":
-    data = scrape_dataset(limit=10)
+    data = scrape_dataset()
 
     print(f"\nTotal chunks collected: {len(data)}")
 
