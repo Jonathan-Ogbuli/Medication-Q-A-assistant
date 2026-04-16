@@ -1,8 +1,15 @@
 import json
 import os
 import numpy as np
+import unicodedata
 from pinecone import Pinecone
 from dotenv import load_dotenv
+
+
+def ascii_safe(text):
+    text = str(text)
+    text = unicodedata.normalize('NFKD', text)
+    return text.encode('ascii', errors='replace').decode('ascii')
 
 load_dotenv()
 
@@ -20,9 +27,13 @@ def load_existing_data(index_path="medication_faiss.index", metadata_path="metad
     return vectors, metadata
 
 
-def upload_vectors(vectors, metadata, index_name=INDEX_NAME):
+def upload_vectors(vectors, metadata, index_name=INDEX_NAME, clear=False):
     pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
     index = pc.Index(index_name)
+
+    if clear:
+        print("Clearing existing vectors...")
+        index.delete(delete_all=True)
 
     vectors_list = vectors.tolist()
     total = len(vectors_list)
@@ -35,33 +46,44 @@ def upload_vectors(vectors, metadata, index_name=INDEX_NAME):
         batch_meta = []
 
         for j in range(i, batch_end):
+            m = metadata[j]
+            content = ascii_safe(m.get("content", ""))
+            if len(content) > 10000:
+                content = content[:10000]
             batch_vectors.append({
                 "id": str(j),
                 "values": vectors_list[j],
                 "metadata": {
-                    "title": metadata[j]["title"],
-                    "section": metadata[j]["section"],
-                    "content": metadata[j]["content"],
-                    "intent": metadata[j]["intent"],
-                    "url": metadata[j]["url"],
-                    "tags": json.dumps(metadata[j]["tags"]),
+                    "title": ascii_safe(m.get("title", ""))[:500],
+                    "section": ascii_safe(m.get("section", ""))[:100],
+                    "content": content,
+                    "intent": ascii_safe(m.get("intent", ""))[:100],
+                    "url": ascii_safe(m.get("url", ""))[:500],
+                    "tags": ascii_safe(m.get("tags", "[]"))[:500],
                 }
             })
             batch_meta.append(metadata[j])
 
-        index.upsert(vectors=batch_vectors, namespace="")
-
-        print(f"Uploaded {batch_end}/{total} vectors")
+        try:
+            index.upsert(vectors=batch_vectors, namespace="")
+            print(f"Uploaded {batch_end}/{total} vectors")
+        except Exception as e:
+            print(f"Error at batch {i}-{batch_end}: {e}")
+            print(f"First vector metadata sample: {batch_vectors[0]['metadata']}")
+            raise
 
     print("Done!")
 
 
 def main():
+    import sys
+    clear = "--clear" in sys.argv
+    
     print("Loading existing FAISS index...")
     vectors, metadata = load_existing_data()
     print(f"Loaded {len(vectors)} vectors")
 
-    upload_vectors(vectors, metadata)
+    upload_vectors(vectors, metadata, clear=clear)
 
 
 if __name__ == "__main__":

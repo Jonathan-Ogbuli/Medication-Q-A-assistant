@@ -52,7 +52,7 @@ def retrieve(query, top_k=5):
             "content": meta.get("content", ""),
             "intent": meta.get("intent", ""),
             "url": meta.get("url", ""),
-            "tags": json.loads(meta.get("tags", "[]")),
+            "tags": meta.get("tags", "[]"),
         })
     
     return retrieved_results
@@ -120,9 +120,9 @@ def rag_query(query, top_k=5, use_llm=True):
     results = retrieve(query=query, top_k=top_k)
     # print(f"Retrieving for query: {query}")
     
-    # print(f"Found {len(results)} results:")
-    # for i, r in enumerate(results):
-    #     print(f"  {i+1}. [{r['section']}] {r['title']} (distance: {r['distance']:.2f})")
+    print(f"Found {len(results)} results:")
+    for i, r in enumerate(results):
+        print(f"  {i+1}. [{r['section']}] {r['title']} (distance: {r['distance']:.2f})")
     
     if use_llm:
         print("Generating response...")

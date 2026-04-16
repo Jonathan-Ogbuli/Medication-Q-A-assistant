@@ -1,5 +1,2 @@
 .env
 .env.local
-apotheek_dataset.json
-medication_faiss.index
-metadata.json
