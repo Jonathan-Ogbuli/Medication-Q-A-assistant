@@ -9,7 +9,7 @@ BASE_URL = "https://www.apotheek.nl"
 HEADERS = {
     "User-Agent": "MedicationRAGBot/1.0 (educational project)"
 }
-DELAY = 1.0
+DELAY = 0.5
 
 
 # -----------------------------
