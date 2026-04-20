@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicijn Vraag Assistent</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Medicijn Vraag Assistent</h1>
+            <p class="subtitle">Stel vragen over uw medicatie</p>
+        </header>
+
+        <main class="chat-container" id="chat-container">
+            <div class="welcome-message">
+                <p>Hallo! Ik ben uw virtuele assistent voor vragen over medicatie.</p>
+                <p>Stel gerust uw vraag, bijvoorbeeld: <em>"Wat is ibuprofen?"</em> of <em>"Wat zijn de bijwerkingen van paracetamol?"</em></p>
+            </div>
+            <div id="messages"></div>
+        </main>
+
+        <footer class="input-container">
+            <form id="chat-form" class="chat-form">
+                <input 
+                    type="text" 
+                    id="question-input" 
+                    placeholder="Typ uw vraag hier..." 
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit" id="send-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </form>
+            <div class="disclaimer">
+                <p>Dit is een AI-assistent en geen vervanging voor professioneel medisch advies. Raadpleeg altijd uw arts of apotheker.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
