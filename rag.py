@@ -55,21 +55,48 @@ def embed_query(query):
     return embedding[0].tolist()
 
 
-def retrieve(query, top_k=5):
-    index = get_pinecone_index()
+def extract_medication_names(query):
+    import re
+    query_lower = query.lower()
+    words = query_lower.split()
     
+    found = []
+    for word in words:
+        cleaned = re.sub(r'[^a-z]', '', word)
+        if len(cleaned) > 4:
+            found.append(cleaned)
+    
+    return found
+
+
+def retrieve(query, top_k=10):
+    index = get_pinecone_index()
     query_embedding = embed_query(query)
     
     results = index.query(
         vector=query_embedding,
-        top_k=top_k,
+        top_k=top_k * 2,
         include_metadata=True,
         include_values=False
     )
     
+    medication_words = extract_medication_names(query)
+    
     retrieved_results = []
     for match in results.matches:
         meta = match.metadata
+        title_lower = meta.get("title", "").lower()
+        content_lower = meta.get("content", "").lower()
+        
+        is_relevant = True
+        if medication_words:
+            found_in_result = False
+            for med_word in medication_words:
+                if med_word in title_lower or med_word in content_lower:
+                    found_in_result = True
+                    break
+            is_relevant = found_in_result
+        
         retrieved_results.append({
             "distance": match.score,
             "title": meta.get("title", ""),
@@ -78,9 +105,20 @@ def retrieve(query, top_k=5):
             "intent": meta.get("intent", ""),
             "url": meta.get("url", ""),
             "tags": meta.get("tags", "[]"),
+            "is_relevant": is_relevant,
         })
     
-    return retrieved_results
+    relevant_results = [r for r in retrieved_results if r["is_relevant"]]
+    
+    if len(relevant_results) < 3:
+        relevant_results = retrieved_results[:top_k]
+    else:
+        relevant_results = relevant_results[:top_k]
+    
+    if not relevant_results:
+        relevant_results = retrieved_results[:top_k]
+    
+    return relevant_results
 
 
 def build_prompt(query, retrieved_chunks):
@@ -103,7 +141,13 @@ def generate_response(query, retrieved_chunks, conversation_history=None, model=
         
         client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
         
-        context = retrieved_chunks[0]["content"] if retrieved_chunks else ""
+        context_parts = []
+        for chunk in retrieved_chunks[:3]:
+            source = f"Source: {chunk.get('title', 'Unknown')} - {chunk.get('section', 'Unknown')}"
+            content = chunk["content"]
+            context_parts.append(f"{source}\n{content}")
+        
+        context = "\n\n---\n\n".join(context_parts) if context_parts else ""
         
         history_text = ""
         if conversation_history:
@@ -111,23 +155,22 @@ def generate_response(query, retrieved_chunks, conversation_history=None, model=
             for msg in conversation_history[-5:]:
                 history_text += f"{msg['role']}: {msg['content']}\n"
         
-        prompt = f"""Je hebt informatie over medicijnen. Gebruik de onderstaande context om de vraag te beantwoorden.
+        prompt = f"""Je beantwoordt vragen over medicijnen ALLEEN op basis van de onderstaande bronnen.
 
 Context:
 {context}
 {history_text}
 
 Instructies:
-- Als de context informatie bevat over het medicijn dat in de vraag wordt genoemd, gebruik die informatie dan om de vraag te beantwoorden.
-- Als de context GEEN informatie bevat over het medicijn uit de vraag, zeg dan: "Ik heb geen informatie hierover in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
-- Als er gevraagd wordt naar medicatie die niet in de dataset of context voorkomt, zeg dan: "Ik heb geen informatie hierover in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
-- Verzin geen informatie.
-- Als de vraag onduidelijk is of belangrijke details mist, stel dan een verduidelijkende vraag in plaats van te antwoorden.
-- Als de gebruiker een eerdere vraag heeft gesteld en nu een vervolgvraag stelt (zoals "en hoe zit het met X?" of "en de bijwerkingen?"), ga dan uit van de eerdere vraag.
+- ALS DE VRAAG GAAT OVER [medicijnnaam]: gebruik alleen informatie uit de bronnen die over dat specifieke medicijn gaan. NOOIT informatie van andere medicijnen gebruiken.
+- Als geen van de bronnen over het medicijn uit de vraag gaat, zeg dan: "Ik heb geen informatie over [medicijnnaam] in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
+- NOOIT informatie bedenken of afleiden die niet expliciet in de bronnen staat. Geen vergelijkingen maken met andere medicijnen.
+- NOOIT verwijzen naar andere medicijnen uit de bronnen als die niet relevant zijn voor de vraag.
+- Als de bronnen wel over het medicijn gaan maar geen informatie over het specifieke onderwerp bevatten, zeg dan: "Ik heb geen specifieke informatie hierover in mijn database over [medicijnnaam]."
+- Citeer de bron door de exacte sectienaam te noemen (bijv. "Volgens [sectienaam]...").
 - Geef altijd duidelijk aan dat je een AI bent en geen arts, verpleegkundige of andere medische professional.
-- Vermeld expliciet dat de gegeven informatie alleen bedoeld is voor educatieve of informatieve doeleinden en geen vervanging is voor professioneel medisch advies, diagnose of behandeling.
-- Geef aan dat de informatie mogelijk onvolledig, verouderd of onjuist kan zijn.
-- Adviseer gebruikers om bij een medische noodsituatie onmiddellijk contact op te nemen met hulpdiensten of naar de spoedeisende hulp te gaan.
+- Vermeld expliciet dat de gegeven informatie alleen bedoeld is voor educatieve of informatieve doeleinden en geen vervanging is voor professioneel medisch advies.
+- Adviseer gebruikers om bij een medische noodsituatie onmiddellijk contact op te nemen met hulpdiensten.
 
 Vraag: {query}
 Antwoord:"""
@@ -151,6 +194,8 @@ Antwoord:"""
 
 
 def rag_query(query, top_k=5, use_llm=True, session_id=None):
+    if top_k < 3:
+        top_k = 3
     session_id, history = get_session(session_id)
     results = retrieve(query=query, top_k=top_k)
     
