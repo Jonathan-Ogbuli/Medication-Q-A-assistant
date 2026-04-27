@@ -50,10 +50,12 @@ def upload_vectors(vectors, metadata, index_name=INDEX_NAME, clear=False):
             content = ascii_safe(m.get("content", ""))
             if len(content) > 10000:
                 content = content[:10000]
+            chunk_id = f"{m.get('title', '')}_{m.get('section', '')}"
             batch_vectors.append({
                 "id": str(j),
                 "values": vectors_list[j],
                 "metadata": {
+                    "chunk_id": ascii_safe(chunk_id)[:200],
                     "title": ascii_safe(m.get("title", ""))[:500],
                     "section": ascii_safe(m.get("section", ""))[:100],
                     "content": content,
