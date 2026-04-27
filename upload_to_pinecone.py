@@ -85,7 +85,7 @@ def main():
     vectors, metadata = load_existing_data()
     print(f"Loaded {len(vectors)} vectors")
 
-    upload_vectors(vectors, metadata, clear=clear)
+    upload_vectors(vectors, metadata, clear=True)
 
 
 if __name__ == "__main__":

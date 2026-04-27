@@ -26,6 +26,13 @@ embedding_model = None
 
 conversations = {}
 
+DISCLAIMER_TEXT = """**Belangrijk:**
+- Deze informatie is alleen bedoeld voor educatieve of informatieve doeleinden en is geen vervanging voor professioneel medisch advies, diagnose of behandeling.
+- De informatie kan onvolledig, verouderd of onjuist zijn.
+- Bij een medische noodsituatie: bel direct 112 of ga naar de spoedeisende hulp.
+
+"""
+
 
 def get_session(session_id=None):
     if session_id is None:
@@ -234,9 +241,6 @@ Instructies:
 - Als de vraag onduidelijk is of belangrijke details mist, stel dan een verduidelijkende vraag in plaats van te antwoorden.
 - Als de gebruiker een eerdere vraag heeft gesteld en nu een vervolgvraag stelt (zoals "en hoe zit het met X?" of "en de bijwerkingen?"), ga dan uit van de eerdere vraag.
 - Geef altijd duidelijk aan dat je een AI bent en geen arts, verpleegkundige of andere medische professional.
-- Vermeld expliciet dat de gegeven informatie alleen bedoeld is voor educatieve of informatieve doeleinden en geen vervanging is voor professioneel medisch advies, diagnose of behandeling.
-- Geef aan dat de informatie mogelijk onvolledig, verouderd of onjuist kan zijn.
-- Adviseer gebruikers om bij een medische noodsituatie onmiddellijk contact op te nemen met hulpdiensten of naar de spoedeisende hulp te gaan.
 
 Vraag: {query}
 Antwoord:"""
@@ -268,6 +272,9 @@ def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3):
         conversation_history = [{"role": "user", "content": query}] if history else None
         answer = generate_response(query, results, conversation_history=history, num_context=num_context)
         if answer:
+            # Prepend disclaimer only for the first message in session
+            if len(history) == 0:
+                answer = DISCLAIMER_TEXT + answer
             history.append({"role": "user", "content": query})
             history.append({"role": "assistant", "content": answer})
             return {"results": results, "answer": answer, "session_id": session_id}
