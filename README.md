@@ -1,4 +1,4 @@
-# Medication Q&A Assistant
+# Medication Q&A Assistant (In Development)
 
 A RAG (Retrieval-Augmented Generation) assistant for answering questions about medications in Dutch. Built with FastAPI, Pinecone, and Groq LLM.
 
