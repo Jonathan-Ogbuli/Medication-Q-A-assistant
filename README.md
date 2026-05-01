@@ -1,13 +1,16 @@
-# Medication Q&A Assistant (In Development)
+# Medication Q&A Assistant
 
 A RAG (Retrieval-Augmented Generation) assistant for answering questions about medications in Dutch. Built with FastAPI, Pinecone, and Groq LLM.
 
 ## Features
 
-- Answers medication-related questions using Dutch medical data
-- Hybrid search (dense + sparse BM25 retrieval)
-- Cross-encoder reranking for better results
+- Answers medication-related questions using Dutch medical data from [apotheek.nl](https://www.apotheek.nl)
+- **Intent-aware retrieval** - detects questions about side effects, interactions, dosage, pregnancy, etc.
+- **Medication-specific search** - matches medication names with relevant document sections
+- Hybrid search (dense + sparse BM25 retrieval) with cross-encoder reranking
+- Exact match pre-filtering for improved accuracy
 - Conversational sessions with context memory
+- Session-based disclaimer (shows only once per session)
 - Simple web UI
 
 ## Tech Stack
@@ -54,6 +57,9 @@ Open `http://localhost:8000` in your browser.
 
 ## Usage
 
-- **Web UI**: Visit the homepage and type medication questions
-- **API**: `POST /answer` with `{"question": "..."}`
+- **Web UI**: Visit the homepage and type medication questions (disclaimer shown once per session)
+- **API**: 
+  - `POST /session` - Create new session
+  - `POST /answer` with `{"question": "...", "session_id": "..."}` 
+  - `DELETE /session/{session_id}` - End session
 - **CLI**: `python rag.py "your question here"`
