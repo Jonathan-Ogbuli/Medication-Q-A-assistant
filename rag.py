@@ -119,13 +119,83 @@ def embed_query(query):
     return embedding[0].tolist()
 
 
-def retrieve(query, top_k=5, dense_k=20, bm25_k=20):
+def extract_medication_and_intent(query):
+    """Extract medication name and intent (bijwerkingen, interacties, etc.) from query"""
+    query_lower = query.lower()
+    
+    # Common intents/sections in Dutch medication leaflets
+    intents = {
+        'bijwerkingen': 'bijwerkingen',
+        'bijwerking': 'bijwerkingen',
+        'side effects': 'bijwerkingen',
+        'interacties': 'interacties',
+        'interactie': 'interacties',
+        'wisselwerking': 'interacties',
+        'interactions': 'interacties',
+        'dosering': 'vergeten',  # Dataset doesn't have dosering section, using vergeten
+        'dosage': 'vergeten',
+        'inname': 'vergeten',
+        'hoeveel': 'vergeten',  # "hoeveel moet ik innemen"
+        'hoe werkt': 'wat_is_het',
+        'wat is': 'wat_is_het',
+        'werking': 'wat_is_het',
+        'stoppen': 'stoppen',
+        'stop': 'stoppen',
+        'discontinuation': 'stoppen',
+        'zwangerschap': 'zwangerschap',
+        'pregnancy': 'zwangerschap',
+        'borstvoeding': 'borstvoeding',
+        'breastfeeding': 'borstvoeding',
+    }
+    
+    detected_intent = None
+    for key, section in intents.items():
+        if key in query_lower:
+            detected_intent = section
+            break
+    
+    # Try to extract medication name from dataset
+    dataset = load_dataset()
+    known_meds = {}
+    for d in dataset:
+        title = d.get('title', '').lower()
+        # Store full title and its variations
+        if title:
+            # Add full title
+            known_meds[title] = title
+            # Add first word as fallback
+            first_word = title.split()[0]
+            if first_word not in known_meds:
+                known_meds[first_word] = title
+    
+    detected_med = None
+    # Sort by length (longest first) to match more specific names first
+    for med_key in sorted(known_meds.keys(), key=len, reverse=True):
+        if med_key in query_lower:
+            detected_med = known_meds[med_key]  # Return the canonical title
+            break
+    
+    return detected_intent, detected_med
+
+
+def retrieve(query, top_k=5, dense_k=50, bm25_k=50):
     index = get_pinecone_index()
     bm25 = init_bm25()
     dataset = load_dataset()
 
+    # Extract intent and medication name to boost relevant sections
+    intent, med_name = extract_medication_and_intent(query)
+    
+    # Pre-filter: if we have both medication and intent, try to get exact matches first
+    exact_matches = []
+    if med_name and intent:
+        for i, chunk in enumerate(dataset):
+            if (med_name.lower() in chunk.get('title', '').lower() and 
+                chunk.get('section', '').lower() == intent):
+                exact_matches.append((i, chunk))
+    
     query_embedding = embed_query(query)
-
+    
     # Dense retrieval from Pinecone
     dense_results = index.query(
         vector=query_embedding,
@@ -172,7 +242,22 @@ def retrieve(query, top_k=5, dense_k=20, bm25_k=20):
                     "tags": chunk.get("tags", "[]"),
                     "source": "bm25"
                 }
-
+    
+    # Add exact matches to candidates with a high base score
+    for idx, chunk in exact_matches:
+        chunk_id = chunk.get("chunk_id", chunk.get("title", "") + chunk.get("section", ""))
+        if chunk_id not in candidates:  # Only add if not already present from dense/BM25
+            candidates[chunk_id] = {
+                "distance": 100.0,  # High base score for exact matches
+                "title": chunk.get("title", ""),
+                "section": chunk.get("section", ""),
+                "content": chunk.get("content", ""),
+                "intent": chunk.get("intent", ""),
+                "url": chunk.get("url", ""),
+                "tags": chunk.get("tags", "[]"),
+                "source": "exact"
+            }
+    
     # Rerank candidates using cross-encoder
     reranker = get_reranker()
     candidate_list = list(candidates.values())
@@ -185,6 +270,25 @@ def retrieve(query, top_k=5, dense_k=20, bm25_k=20):
         # Sort by reranker scores
         for i, score in enumerate(scores):
             candidate_list[i]["rerank_score"] = float(score)
+
+        # Boost chunks that match the detected intent section and medication
+        if intent:
+            for c in candidate_list:
+                section_match = c.get("section", "").lower() == intent
+                med_match = med_name and med_name in c.get("title", "").lower()
+                
+                # Exact title match (title starts with medication name as whole word)
+                exact_med_match = med_name and (c.get("title", "").lower().startswith(med_name.lower() + " ") or 
+                                                c.get("title", "").lower() == med_name.lower())
+                
+                if section_match and exact_med_match:
+                    c["rerank_score"] += 20.0  # Extremely strong boost for exact matches
+                elif section_match and med_match:
+                    c["rerank_score"] += 10.0  # Very strong boost for both matches
+                elif section_match:
+                    c["rerank_score"] += 5.0  # Strong boost for section match
+                elif exact_med_match:
+                    c["rerank_score"] += 3.0  # Medium boost for exact medication match
 
         candidate_list.sort(key=lambda x: x["rerank_score"], reverse=True)
         return candidate_list[:top_k]
@@ -269,7 +373,6 @@ def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3):
 
     if use_llm:
         print("Generating response...")
-        conversation_history = [{"role": "user", "content": query}] if history else None
         answer = generate_response(query, results, conversation_history=history, num_context=num_context)
         if answer:
             # Prepend disclaimer only for the first message in session
