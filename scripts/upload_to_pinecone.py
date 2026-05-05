@@ -18,7 +18,14 @@ INDEX_NAME = "medication-index"
 BATCH_SIZE = 100
 
 
-def load_existing_data(index_path="medication_faiss.index", metadata_path="metadata.json"):
+import os
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
+
+def load_existing_data(index_path=None, metadata_path=None):
+    if index_path is None:
+        index_path = os.path.join(DATA_DIR, "medication_faiss.index")
+    if metadata_path is None:
+        metadata_path = os.path.join(DATA_DIR, "metadata.json")
     import faiss
     index = faiss.read_index(index_path)
     with open(metadata_path, "r", encoding="utf-8") as f:

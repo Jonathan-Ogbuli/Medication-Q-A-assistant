@@ -78,10 +78,12 @@ def get_reranker():
     return reranker
 
 
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
+
 def load_dataset():
     global dataset
     if dataset is None:
-        with open("apotheek_dataset.json", "r", encoding="utf-8") as f:
+        with open(os.path.join(DATA_DIR, "apotheek_dataset.json"), "r", encoding="utf-8") as f:
             dataset = json.load(f)
     return dataset
 

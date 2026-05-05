@@ -4,6 +4,9 @@ import time
 import json
 import string
 import hashlib
+import os
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 BASE_URL = "https://www.apotheek.nl"
 HEADERS = {
@@ -236,7 +239,7 @@ def scrape_dataset(limit=10000, batch_save=50):
             print(f"Error scraping {link}: {e}")
 
         if (i + 1) % batch_save == 0:
-            with open("apotheek_dataset_partial.json", "w", encoding="utf-8") as f:
+            with open(os.path.join(DATA_DIR, "apotheek_dataset_partial.json"), "w", encoding="utf-8") as f:
                 json.dump(dataset, f, ensure_ascii=False, indent=2)
             print(f"  -> Saved {len(dataset)} chunks so far (batch save)\n")
 
@@ -250,7 +253,7 @@ if __name__ == "__main__":
 
     print(f"\nTotal chunks collected: {len(data)}")
 
-    with open("apotheek_dataset.json", "w", encoding="utf-8") as f:
+    with open(os.path.join(DATA_DIR, "apotheek_dataset.json"), "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
     print("Saved to apotheek_dataset.json")

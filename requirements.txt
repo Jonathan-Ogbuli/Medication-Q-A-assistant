@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sentence-transformers
+pinecone
+python-dotenv
+rank-bm25
+nltk
+groq
+faiss-cpu
+requests
+beautifulsoup4
+pydantic

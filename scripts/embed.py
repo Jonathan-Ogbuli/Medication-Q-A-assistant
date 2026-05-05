@@ -4,11 +4,17 @@ import faiss
 from sentence_transformers import SentenceTransformer
 
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-INDEX_PATH = "medication_faiss.index"
-METADATA_PATH = "metadata.json"
+INDEX_PATH = os.path.join(DATA_DIR, "medication_faiss.index")
+METADATA_PATH = os.path.join(DATA_DIR, "metadata.json")
 
 
-def load_chunks(path="apotheek_dataset.json"):
+import os
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
+
+def load_chunks(path=None):
+    if path is None:
+        path = os.path.join(DATA_DIR, "apotheek_dataset.json")
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
