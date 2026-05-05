@@ -146,6 +146,10 @@ def extract_medication_and_intent(query):
         'pregnancy': 'zwangerschap',
         'borstvoeding': 'borstvoeding',
         'breastfeeding': 'borstvoeding',
+        'rijvaardigheid': 'rijvaardigheid',
+        'rijden': 'rijvaardigheid',
+        'autorijden': 'rijvaardigheid',
+        'driving': 'rijvaardigheid',
     }
     
     detected_intent = None
@@ -338,7 +342,7 @@ Instructies:
 - Als de context informatie bevat over het medicijn dat in de vraag wordt genoemd, gebruik die informatie dan om de vraag te beantwoorden.
 - Als de context GEEN informatie bevat over het medicijn uit de vraag, zeg dan: "Ik heb geen informatie hierover in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
 - Vermijd het gebruik van het woord "context" in je antwoorden.
-- Houd de antwoorden kort en bondig.
+- Houd de antwoorden kort en bondig, vertel niet meer dan nodig is.
 - Als er gevraagd wordt naar bijwerkingen, noem deze op van meest voorkoment naar minst voorkomend.
 - Als er gevraagd wordt naar medicatie die niet in de dataset of context voorkomt, zeg dan: "Ik heb geen informatie hierover in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
 - Verzin geen informatie.
@@ -358,7 +362,7 @@ Antwoord:"""
             ],
             model=model,
             temperature=0.0,
-            max_tokens=400,
+            max_tokens=500,
         )
         
         return chat_completion.choices[0].message.content
