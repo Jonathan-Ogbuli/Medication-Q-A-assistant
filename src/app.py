@@ -1,4 +1,10 @@
 import os
+import sys
+from pathlib import Path
+
+# Add src directory to path so imports work when running from project root
+sys.path.insert(0, str(Path(__file__).parent))
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -23,7 +29,7 @@ def serve_index():
 
 class Question(BaseModel):
     question: str
-    top_k: int = 5
+    top_k: int = 10
     use_llm: bool = True
     session_id: str | None = None
 

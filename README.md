@@ -50,14 +50,14 @@ python upload_to_pinecone.py
 
 Start the API server:
 ```bash
-uvicorn app:app --reload
+uvicorn src.app:app --reload
 ```
 
 Open `http://localhost:8000` in your browser.
 
 ## Usage
 
-- **Web UI**: Visit the homepage and type medication questions (disclaimer shown once per session)
+- **Web UI**: Visit the homepage and type medication questions
 - **API**: 
   - `POST /session` - Create new session
   - `POST /answer` with `{"question": "...", "session_id": "..."}` 
