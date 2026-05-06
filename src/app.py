@@ -32,6 +32,7 @@ class Question(BaseModel):
     top_k: int = 10
     use_llm: bool = True
     session_id: str | None = None
+    language: str = "nl"
 
 
 class Answer(BaseModel):
@@ -58,9 +59,9 @@ def delete_session(session_id: str):
 
 @app.post("/answer", response_model=Answer)
 def ask_question(q: Question):
-    result = rag_query(q.question, top_k=q.top_k, use_llm=q.use_llm, session_id=q.session_id)
+    result = rag_query(q.question, top_k=q.top_k, use_llm=q.use_llm, session_id=q.session_id, language=q.language)
     answer = result.get("answer")
-    print(f"API answer (has newlines: {answer and chr(10) in answer}): {repr(answer[:200]) if answer else None}")
+    print(f"API answer lang={q.language} (has newlines: {answer and chr(10) in answer}): {repr(answer[:200]) if answer else None}")
     return Answer(
         answer=answer, 
         results=result.get("results"),

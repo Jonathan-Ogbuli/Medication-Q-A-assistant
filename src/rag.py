@@ -26,10 +26,17 @@ embedding_model = None
 
 conversations = {}
 
-DISCLAIMER_TEXT = """**Belangrijk:**
+DISCLAIMER_TEXT_NL = """**Belangrijk:**
 - Deze informatie is alleen bedoeld voor educatieve of informatieve doeleinden en is geen vervanging voor professioneel medisch advies, diagnose of behandeling.
 - De informatie kan onvolledig, verouderd of onjuist zijn.
 - Bij een medische noodsituatie: bel direct 112 of ga naar de spoedeisende hulp.
+
+"""
+
+DISCLAIMER_TEXT_EN = """**Important:**
+- This information is for educational and informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment.
+- The information may be incomplete, outdated, or incorrect.
+- In case of a medical emergency: call 112 immediately or go to the emergency room.
 
 """
 
@@ -121,7 +128,7 @@ def embed_query(query):
     return embedding[0].tolist()
 
 
-def extract_medication_and_intent(query):
+def extract_medication_and_intent(query, language="nl"):
     """Extract medication name and intent (bijwerkingen, interacties, etc.) from query"""
     query_lower = query.lower()
     
@@ -152,6 +159,11 @@ def extract_medication_and_intent(query):
         'rijden': 'rijvaardigheid',
         'autorijden': 'rijvaardigheid',
         'driving': 'rijvaardigheid',
+        # English additions
+        'what is': 'wat_is_het',
+        'how does': 'wat_is_het',
+        'what are': 'bijwerkingen',
+        'tell me about': 'wat_is_het',
     }
     
     detected_intent = None
@@ -184,13 +196,13 @@ def extract_medication_and_intent(query):
     return detected_intent, detected_med
 
 
-def retrieve(query, top_k=5, dense_k=50, bm25_k=50):
+def retrieve(query, top_k=5, dense_k=50, bm25_k=50, language="nl"):
     index = get_pinecone_index()
     bm25 = init_bm25()
     dataset = load_dataset()
 
     # Extract intent and medication name to boost relevant sections
-    intent, med_name = extract_medication_and_intent(query)
+    intent, med_name = extract_medication_and_intent(query, language)
     
     # Pre-filter: if we have both medication and intent, try to get exact matches first
     exact_matches = []
@@ -318,7 +330,7 @@ def format_retrieved_results(results):
     return output
 
 
-def generate_response(query, retrieved_chunks, conversation_history=None, model=GROQ_MODEL, num_context=3):
+def generate_response(query, retrieved_chunks, conversation_history=None, model=GROQ_MODEL, num_context=3, language="nl"):
     try:
         from groq import Groq
 
@@ -330,19 +342,44 @@ def generate_response(query, retrieved_chunks, conversation_history=None, model=
 
         history_text = ""
         if conversation_history:
-            history_text = "\n\nEerdere conversatie:\n"
+            history_text = "\n\nPrevious conversation:\n" if language == "en" else "\n\nEerdere conversatie:\n"
             for msg in conversation_history[-5:]:
                 history_text += f"{msg['role']}: {msg['content']}\n"
 
-        prompt = f"""Je hebt informatie over medicijnen. Gebruik de onderstaande context om de vraag te beantwoorden.
+        if language == "en":
+            prompt = f"""You have information about medications. Use the context below to answer the question IN ENGLISH.
+
+Context:
+{context_text}
+{history_text}
+
+Instructions:
+- If the context contains information about the medication mentioned in the question, use that information to answer the question IN ENGLISH.
+- If the context does NOT contain information about the medication in the question, say IN ENGLISH: "I have no information about this in my database. Please consult a doctor or pharmacist for medical advice."
+- Respond IN ENGLISH only, even if the context is in another language.
+- Avoid using the word "context" in your answers.
+- Keep answers short and concise, don't tell more than necessary.
+- When asked about side effects, list them from most common to least common.
+- When asked about medication not in the dataset or context, say: "I have no information about this in my database. Please consult a doctor or pharmacist for medical advice."
+- Do not make up information.
+- If the question is unclear or missing important details, ask a clarifying question instead of answering.
+- If the user asked a previous question and now asks a follow-up question (like "what about X?" or "and the side effects?"), base your answer on the previous question.
+- Always clearly state that you are an AI and not a doctor, nurse, or other medical professional.
+- Use newlines to separate paragraphs for readability.
+
+Question: {query}
+Answer (in English):"""
+        else:
+            prompt = f"""Je hebt informatie over medicijnen. Gebruik de onderstaande context om de vraag te beantwoorden in het Nederlands.
 
 Context:
 {context_text}
 {history_text}
 
 Instructies:
-- Als de context informatie bevat over het medicijn dat in de vraag wordt genoemd, gebruik die informatie dan om de vraag te beantwoorden.
-- Als de context GEEN informatie bevat over het medicijn uit de vraag, zeg dan: "Ik heb geen informatie hierover in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
+- Als de context informatie bevat over het medicijn dat in de vraag wordt genoemd, gebruik die informatie dan om de vraag te beantwoorden in het Nederlands.
+- Als de context GEEN informatie bevat over het medicijn uit de vraag, zeg dan in het Nederlands: "Ik heb geen informatie hierover in mijn database. Raadpleeg een arts of apotheker voor medisch advies."
+- Antwoord alleen in het Nederlands, ook als de context in een andere taal is.
 - Vermijd het gebruik van het woord "context" in je antwoorden.
 - Houd de antwoorden kort en bondig, vertel niet meer dan nodig is.
 - Als er gevraagd wordt naar bijwerkingen, noem deze op van meest voorkoment naar minst voorkomend.
@@ -354,7 +391,7 @@ Instructies:
 - Gebruik newlines om paragrafen te scheiden voor leesbaarheid.
 
 Vraag: {query}
-Antwoord:"""
+Antwoord (in het Nederlands):"""
         
         chat_completion = client.chat.completions.create(
             messages=[
@@ -374,17 +411,18 @@ Antwoord:"""
         return None
 
 
-def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3):
+def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3, language="nl"):
     session_id, history = get_session(session_id)
-    results = retrieve(query=query, top_k=top_k)
+    results = retrieve(query=query, top_k=top_k, language=language)
 
     if use_llm:
         print("Generating response...")
-        answer = generate_response(query, results, conversation_history=history, num_context=num_context)
+        answer = generate_response(query, results, conversation_history=history, num_context=num_context, language=language)
         if answer:
             # Prepend disclaimer only for the first message in session
             if len(history) == 0:
-                answer = DISCLAIMER_TEXT + answer
+                disclaimer = DISCLAIMER_TEXT_EN if language == "en" else DISCLAIMER_TEXT_NL
+                answer = disclaimer + answer
             history.append({"role": "user", "content": query})
             history.append({"role": "assistant", "content": answer})
             return {"results": results, "answer": answer, "session_id": session_id}
