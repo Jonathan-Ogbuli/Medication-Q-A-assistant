@@ -59,8 +59,10 @@ def delete_session(session_id: str):
 @app.post("/answer", response_model=Answer)
 def ask_question(q: Question):
     result = rag_query(q.question, top_k=q.top_k, use_llm=q.use_llm, session_id=q.session_id)
+    answer = result.get("answer")
+    print(f"API answer (has newlines: {answer and chr(10) in answer}): {repr(answer[:200]) if answer else None}")
     return Answer(
-        answer=result.get("answer"), 
+        answer=answer, 
         results=result.get("results"),
         session_id=result.get("session_id")
     )

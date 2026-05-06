@@ -96,6 +96,7 @@ body {
     border-radius: var(--radius);
     line-height: 1.6;
     animation: fadeIn 0.3s ease-out;
+    white-space: pre-wrap;
 }
 
 @keyframes fadeIn {
