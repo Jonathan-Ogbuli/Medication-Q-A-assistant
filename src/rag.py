@@ -160,7 +160,6 @@ def extract_medication_and_intent(query, language="nl"):
         'rijden': 'rijvaardigheid',
         'autorijden': 'rijvaardigheid',
         'driving': 'rijvaardigheid',
-        # English additions
         'what is': 'wat_is_het',
         'how does': 'wat_is_het',
         'what are': 'bijwerkingen',
