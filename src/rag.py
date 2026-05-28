@@ -15,7 +15,8 @@ EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 RERANKER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 INDEX_NAME = "medication-index"
 
-GROQ_MODEL = "llama-3.1-8b-instant"
+# GROQ_MODEL = "llama-3.1-8b-instant" # faster
+GROQ_MODEL = "llama-3.3-70b-versatile" # more reasoning
 
 pinecone_client = None
 pinecone_index = None
@@ -351,7 +352,6 @@ def generate_response(query, retrieved_chunks, conversation_history=None, model=
 
 Context:
 {context_text}
-{history_text}
 
 Instructions:
 - If the context contains information about the medication mentioned in the question, use that information to answer the question IN ENGLISH.
@@ -374,7 +374,6 @@ Answer (in English):"""
 
 Context:
 {context_text}
-{history_text}
 
 Instructies:
 - Als de context informatie bevat over het medicijn dat in de vraag wordt genoemd, gebruik die informatie dan om de vraag te beantwoorden in het Nederlands.
@@ -394,7 +393,7 @@ Vraag: {query}
 Antwoord (in het Nederlands):"""
         
         chat_completion = client.chat.completions.create(
-            messages=[
+            messages=conversation_history + [
                 {
                     "role": "user",
                     "content": prompt,
@@ -420,11 +419,12 @@ def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3, lang
         answer = generate_response(query, results, conversation_history=history, num_context=num_context, language=language)
         if answer:
             # Prepend disclaimer only for the first message in session
-            if len(history) == 0:
-                disclaimer = DISCLAIMER_TEXT_EN if language == "en" else DISCLAIMER_TEXT_NL
-                answer = disclaimer + answer
             history.append({"role": "user", "content": query})
             history.append({"role": "assistant", "content": answer})
+            # Prepend disclaimer only for the first assistant message in session
+            if len(history) == 2: # This will be true only for the very first assistant message
+                disclaimer = DISCLAIMER_TEXT_EN if language == "en" else DISCLAIMER_TEXT_NL
+                answer = disclaimer + answer
             return {"results": results, "answer": answer, "session_id": session_id}
 
     formatted = format_retrieved_results(results)
