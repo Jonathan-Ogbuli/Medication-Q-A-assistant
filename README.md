@@ -4,7 +4,7 @@ A RAG (Retrieval-Augmented Generation) assistant for answering questions about m
 
 ## Features
 
-- Answers medication-related questions using Dutch medical data from [apotheek.nl](https://www.apotheek.nl)
+- Answers medication-related questions using Dutch medical data from [apotheek.nl](https://www.apotheek.nl) and [farmacotherapeutischkompas.nl](https://www.farmacotherapeutischkompas.nl)
 - **Intent-aware retrieval** - detects questions about side effects, interactions, dosage, pregnancy, etc.
 - **Medication-specific search** - matches medication names with relevant document sections
 - Hybrid search (dense + sparse BM25 retrieval) with cross-encoder reranking
@@ -20,7 +20,7 @@ A RAG (Retrieval-Augmented Generation) assistant for answering questions about m
 - **Embeddings**: SentenceTransformers (all-MiniLM-L6-v2)
 - **LLM**: Groq (Llama 3.1 8B)
 - **Reranking**: CrossEncoder (ms-marco-MiniLM-L-6-v2)
-- **Data Source**: Scraped from [apotheek.nl](https://www.apotheek.nl)
+- **Data Sources**: Scraped from [apotheek.nl](https://www.apotheek.nl) and [farmacotherapeutischkompas.nl](https://www.farmacotherapeutischkompas.nl)
 
 ## Setup
 
