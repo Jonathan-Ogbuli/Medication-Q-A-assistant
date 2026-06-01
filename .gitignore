@@ -5,3 +5,9 @@ data/*.json
 data/*.index
 *.pyc
 test_queries_*.md
+test_queries.py
+run_tests.py
+simple_test.py
+test_runner.py
+TEST_REPORT.md
+IMPROVEMENT_PLAN.md
