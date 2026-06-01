@@ -1,16 +1,14 @@
 import json
 import numpy as np
 import faiss
+import os
 from sentence_transformers import SentenceTransformer
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 INDEX_PATH = os.path.join(DATA_DIR, "medication_faiss.index")
 METADATA_PATH = os.path.join(DATA_DIR, "metadata.json")
-
-
-import os
-
-DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 def load_chunks(path=None):
     if path is None:

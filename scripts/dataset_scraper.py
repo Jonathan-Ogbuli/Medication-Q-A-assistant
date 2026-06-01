@@ -139,8 +139,6 @@ def get_medication_links(limit=10):
                 if (
                     "/medicijnen/" in href
                     # and "?" not in href
-                    and "bij-kinderen" not in href
-                    and "kindertekst" not in href
                     ):
                     full_url = href if href.startswith("http") else BASE_URL + href
 

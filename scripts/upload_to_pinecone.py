@@ -17,8 +17,6 @@ EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 INDEX_NAME = "medication-index"
 BATCH_SIZE = 100
 
-
-import os
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 def load_existing_data(index_path=None, metadata_path=None):
