@@ -12,7 +12,7 @@ METADATA_PATH = os.path.join(DATA_DIR, "metadata.json")
 
 def load_chunks(path=None):
     if path is None:
-        path = os.path.join(DATA_DIR, "apotheek_dataset.json")
+        path = os.path.join(DATA_DIR, "combined_dataset.json")
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
