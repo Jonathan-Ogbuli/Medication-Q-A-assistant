@@ -2,12 +2,11 @@ import json
 import os
 import uuid
 import numpy as np
+import faiss
 from sentence_transformers import SentenceTransformer, CrossEncoder
-from pinecone import Pinecone
 from dotenv import load_dotenv
 from rank_bm25 import BM25Okapi
 import nltk
-from collections import defaultdict
 
 load_dotenv()
 
@@ -15,15 +14,28 @@ EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 RERANKER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 INDEX_NAME = "medication-index"
 
+USE_PINECONE = os.environ.get("USE_PINECONE", "false").strip().lower() in ("true", "1", "yes")
+
 # GROQ_MODEL = "llama-3.1-8b-instant" # faster
 GROQ_MODEL = "llama-3.3-70b-versatile" # more reasoning
 
-pinecone_client = None
-pinecone_index = None
+# Module-level caches (lazy-loaded, auto-refreshed via mtime)
 bm25_index = None
 dataset = None
 reranker = None
 embedding_model = None
+faiss_index_obj = None
+faiss_metadata = None
+pinecone_client = None
+pinecone_index = None
+
+# File mtime tracking for auto-reload
+_file_mtimes = {
+    "dataset": 0,
+    "faiss_index": 0,
+    "faiss_metadata": 0,
+}
+_bm25_dataset_len = 0
 
 conversations = {}
 
@@ -41,14 +53,20 @@ DISCLAIMER_TEXT_EN = """**Important:**
 
 """
 
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
+
+DATASET_PATH = os.path.join(DATA_DIR, "combined_dataset.json")
+FAISS_INDEX_PATH = os.path.join(DATA_DIR, "medication_faiss.index")
+METADATA_PATH = os.path.join(DATA_DIR, "metadata.json")
+
 
 def get_session(session_id=None):
     if session_id is None:
         session_id = str(uuid.uuid4())
-    
+
     if session_id not in conversations:
         conversations[session_id] = []
-    
+
     return session_id, conversations[session_id]
 
 
@@ -67,8 +85,13 @@ def end_session(session_id):
 def get_pinecone_index():
     global pinecone_client, pinecone_index
     if pinecone_client is None:
-        pinecone_client = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
-        pinecone_index = pinecone_client.Index(INDEX_NAME)
+        try:
+            from pinecone import Pinecone
+            pinecone_client = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
+            pinecone_index = pinecone_client.Index(INDEX_NAME)
+        except Exception:
+            pinecone_client = None
+            pinecone_index = None
     return pinecone_index
 
 
@@ -86,22 +109,26 @@ def get_reranker():
     return reranker
 
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
-
 def load_dataset():
-    global dataset
-    if dataset is None:
-        with open(os.path.join(DATA_DIR, "apotheek_dataset.json"), "r", encoding="utf-8") as f:
+    global dataset, _file_mtimes
+    current_mtime = os.path.getmtime(DATASET_PATH) if os.path.exists(DATASET_PATH) else 0
+
+    if dataset is None or current_mtime != _file_mtimes["dataset"]:
+        with open(DATASET_PATH, "r", encoding="utf-8") as f:
             dataset = json.load(f)
+        _file_mtimes["dataset"] = current_mtime
+
     return dataset
 
 
 def init_bm25():
-    global bm25_index, dataset
-    if bm25_index is not None:
+    global bm25_index, _bm25_dataset_len
+
+    dataset = load_dataset()
+
+    if bm25_index is not None and len(dataset) == _bm25_dataset_len:
         return bm25_index
 
-    # Download NLTK data if needed
     try:
         nltk.data.find('tokenizers/punkt')
     except LookupError:
@@ -111,8 +138,6 @@ def init_bm25():
     except LookupError:
         nltk.download('punkt_tab')
 
-    dataset = load_dataset()
-    # Tokenize search_text for BM25
     tokenized_docs = []
     for chunk in dataset:
         text = chunk.get("search_text", "")
@@ -120,7 +145,57 @@ def init_bm25():
         tokenized_docs.append(tokens)
 
     bm25_index = BM25Okapi(tokenized_docs)
+    _bm25_dataset_len = len(dataset)
     return bm25_index
+
+
+def get_local_faiss():
+    global faiss_index_obj, faiss_metadata, _file_mtimes
+
+    index_mtime = os.path.getmtime(FAISS_INDEX_PATH) if os.path.exists(FAISS_INDEX_PATH) else 0
+    meta_mtime = os.path.getmtime(METADATA_PATH) if os.path.exists(METADATA_PATH) else 0
+
+    if (faiss_index_obj is None or faiss_metadata is None or
+        index_mtime != _file_mtimes["faiss_index"] or
+        meta_mtime != _file_mtimes["faiss_metadata"]):
+
+        if os.path.exists(FAISS_INDEX_PATH) and os.path.exists(METADATA_PATH):
+            faiss_index_obj = faiss.read_index(FAISS_INDEX_PATH)
+            with open(METADATA_PATH, "r", encoding="utf-8") as f:
+                faiss_metadata = json.load(f)
+            _file_mtimes["faiss_index"] = index_mtime
+            _file_mtimes["faiss_metadata"] = meta_mtime
+        else:
+            faiss_index_obj = None
+            faiss_metadata = None
+
+    return faiss_index_obj, faiss_metadata
+
+
+def local_dense_search(query_embedding, top_k=50):
+    index, metadata = get_local_faiss()
+    if index is None or metadata is None:
+        return []
+
+    query_np = np.array([query_embedding], dtype="float32")
+    distances, indices = index.search(query_np, top_k)
+
+    results = []
+    for i, idx in enumerate(indices[0]):
+        if idx < 0 or idx >= len(metadata):
+            continue
+        meta = metadata[idx]
+        results.append({
+            "id": str(idx),
+            "score": float(distances[0][i]),
+            "title": meta.get("title", ""),
+            "section": meta.get("section", ""),
+            "content": meta.get("content", ""),
+            "intent": meta.get("intent", ""),
+            "url": meta.get("url", ""),
+            "tags": meta.get("tags", "[]"),
+        })
+    return results
 
 
 def embed_query(query):
@@ -132,8 +207,7 @@ def embed_query(query):
 def extract_medication_and_intent(query, language="nl"):
     """Extract medication name and intent (bijwerkingen, interacties, etc.) from query"""
     query_lower = query.lower()
-    
-    # Common intents/sections in Dutch medication leaflets
+
     intents = {
         'bijwerkingen': 'bijwerkingen',
         'bijwerking': 'bijwerkingen',
@@ -142,10 +216,10 @@ def extract_medication_and_intent(query, language="nl"):
         'interactie': 'interacties',
         'wisselwerking': 'interacties',
         'interactions': 'interacties',
-        'dosering': 'vergeten',  # Dataset doesn't have dosering section, using vergeten
+        'dosering': 'vergeten',
         'dosage': 'vergeten',
         'inname': 'vergeten',
-        'hoeveel': 'vergeten',  # "hoeveel moet ik innemen"
+        'hoeveel': 'vergeten',
         'hoe werkt': 'wat_is_het',
         'wat is': 'wat_is_het',
         'werking': 'wat_is_het',
@@ -164,93 +238,115 @@ def extract_medication_and_intent(query, language="nl"):
         'how does': 'wat_is_het',
         'what are': 'bijwerkingen',
         'tell me about': 'wat_is_het',
+        'sap': 'interacties',
+        'drank': 'interacties',
+        'combinatie': 'interacties',
+        'waarschuwing': 'interacties',
+        'contra': 'interacties',
+        'warning': 'interacties',
+        'contraindication': 'interacties',
     }
-    
+
     detected_intent = None
     for key, section in intents.items():
         if key in query_lower:
             detected_intent = section
             break
-    
-    # Try to extract medication name from dataset
+
     dataset = load_dataset()
     known_meds = {}
     for d in dataset:
         title = d.get('title', '').lower()
-        # Store full title and its variations
         if title:
-            # Add full title
             known_meds[title] = title
-            # Add first word as fallback
             first_word = title.split()[0]
             if first_word not in known_meds:
                 known_meds[first_word] = title
-    
+
     detected_med = None
-    # Sort by length (longest first) to match more specific names first
     for med_key in sorted(known_meds.keys(), key=len, reverse=True):
         if med_key in query_lower:
-            detected_med = known_meds[med_key]  # Return the canonical title
+            detected_med = known_meds[med_key]
             break
-    
+
     return detected_intent, detected_med
 
 
 def retrieve(query, top_k=5, dense_k=50, bm25_k=50, language="nl"):
-    index = get_pinecone_index()
     bm25 = init_bm25()
     dataset = load_dataset()
 
-    # Extract intent and medication name to boost relevant sections
     intent, med_name = extract_medication_and_intent(query, language)
-    
-    # Pre-filter: if we have both medication and intent, try to get exact matches first
+
     exact_matches = []
     if med_name and intent:
         for i, chunk in enumerate(dataset):
-            if (med_name.lower() in chunk.get('title', '').lower() and 
+            if (med_name.lower() in chunk.get('title', '').lower() and
                 chunk.get('section', '').lower() == intent):
                 exact_matches.append((i, chunk))
-    
+
     query_embedding = embed_query(query)
-    
-    # Dense retrieval from Pinecone
-    dense_results = index.query(
-        vector=query_embedding,
-        top_k=dense_k,
-        include_metadata=True,
-        include_values=False
-    )
 
-    # Collect dense candidates
+    # --- Dense retrieval: toggle between Pinecone and local FAISS ---
+    if USE_PINECONE:
+        dense_results = []
+        dense_source = "pinecone"
+        pine_index = get_pinecone_index()
+        if pine_index is not None:
+            try:
+                pine_results = pine_index.query(
+                    vector=query_embedding,
+                    top_k=dense_k,
+                    include_metadata=True,
+                    include_values=False
+                )
+                for match in pine_results.matches:
+                    meta = match.metadata
+                    dense_results.append({
+                        "id": match.id,
+                        "score": match.score,
+                        "title": meta.get("title", ""),
+                        "section": meta.get("section", ""),
+                        "content": meta.get("content", ""),
+                        "intent": meta.get("intent", ""),
+                        "url": meta.get("url", ""),
+                        "tags": meta.get("tags", "[]"),
+                    })
+            except Exception as e:
+                print(f"Pinecone query failed: {e}")
+                dense_results = []
+    else:
+        dense_results = local_dense_search(query_embedding, top_k=dense_k)
+        dense_source = "local_faiss"
+
+    # --- Collect candidates with dataset-index-based keys (dedup across sources) ---
     candidates = {}
-    for match in dense_results.matches:
-        meta = match.metadata
-        chunk_id = meta.get("chunk_id", meta.get("title", "") + meta.get("section", ""))
-        candidates[chunk_id] = {
-            "distance": match.score,
-            "title": meta.get("title", ""),
-            "section": meta.get("section", ""),
-            "content": meta.get("content", ""),
-            "intent": meta.get("intent", ""),
-            "url": meta.get("url", ""),
-            "tags": meta.get("tags", "[]"),
-            "source": "dense"
-        }
+    for i, r in enumerate(dense_results):
+        chunk_idx = r.get("id", str(i))
+        unique_key = f"chunk_{chunk_idx}"
+        if unique_key not in candidates:
+            candidates[unique_key] = {
+                "distance": r.get("score", 0),
+                "title": r.get("title", ""),
+                "section": r.get("section", ""),
+                "content": r.get("content", ""),
+                "intent": r.get("intent", ""),
+                "url": r.get("url", ""),
+                "tags": r.get("tags", "[]"),
+                "source": dense_source,
+            }
 
-    # BM25 sparse retrieval
+    # --- BM25 sparse retrieval ---
     tokenized_query = nltk.word_tokenize(query.lower())
     bm25_scores = bm25.get_scores(tokenized_query)
-
-    # Get top BM25 results
     top_bm25_indices = np.argsort(bm25_scores)[::-1][:bm25_k]
 
     for idx in top_bm25_indices:
         if bm25_scores[idx] > 0:
             chunk = dataset[idx]
-            chunk_id = chunk.get("chunk_id", chunk.get("title", "") + chunk.get("section", ""))
-            if chunk_id not in candidates:
-                candidates[chunk_id] = {
+            unique_key = f"chunk_{idx}"
+            if unique_key not in candidates:
+                candidates[unique_key] = {
                     "distance": float(bm25_scores[idx]),
                     "title": chunk.get("title", ""),
                     "section": chunk.get("section", ""),
@@ -260,13 +356,13 @@ def retrieve(query, top_k=5, dense_k=50, bm25_k=50, language="nl"):
                     "tags": chunk.get("tags", "[]"),
                     "source": "bm25"
                 }
-    
-    # Add exact matches to candidates with a high base score
+
+    # --- Exact matches with high base score ---
     for idx, chunk in exact_matches:
-        chunk_id = chunk.get("chunk_id", chunk.get("title", "") + chunk.get("section", ""))
-        if chunk_id not in candidates:  # Only add if not already present from dense/BM25
-            candidates[chunk_id] = {
-                "distance": 100.0,  # High base score for exact matches
+        unique_key = f"chunk_{idx}"
+        if unique_key not in candidates:
+            candidates[unique_key] = {
+                "distance": 100.0,
                 "title": chunk.get("title", ""),
                 "section": chunk.get("section", ""),
                 "content": chunk.get("content", ""),
@@ -275,38 +371,34 @@ def retrieve(query, top_k=5, dense_k=50, bm25_k=50, language="nl"):
                 "tags": chunk.get("tags", "[]"),
                 "source": "exact"
             }
-    
-    # Rerank candidates using cross-encoder
+
+    # --- Rerank with cross-encoder ---
     reranker = get_reranker()
     candidate_list = list(candidates.values())
 
     if candidate_list:
-        # Prepare pairs for reranking
         pairs = [[query, c["content"]] for c in candidate_list]
         scores = reranker.predict(pairs)
 
-        # Sort by reranker scores
         for i, score in enumerate(scores):
             candidate_list[i]["rerank_score"] = float(score)
 
-        # Boost chunks that match the detected intent section and medication
         if intent:
             for c in candidate_list:
                 section_match = c.get("section", "").lower() == intent
                 med_match = med_name and med_name in c.get("title", "").lower()
-                
-                # Exact title match (title starts with medication name as whole word)
-                exact_med_match = med_name and (c.get("title", "").lower().startswith(med_name.lower() + " ") or 
+
+                exact_med_match = med_name and (c.get("title", "").lower().startswith(med_name.lower() + " ") or
                                                 c.get("title", "").lower() == med_name.lower())
-                
+
                 if section_match and exact_med_match:
-                    c["rerank_score"] += 20.0  # Extremely strong boost for exact matches
+                    c["rerank_score"] += 20.0
                 elif section_match and med_match:
-                    c["rerank_score"] += 10.0  # Very strong boost for both matches
+                    c["rerank_score"] += 10.0
                 elif section_match:
-                    c["rerank_score"] += 5.0  # Strong boost for section match
+                    c["rerank_score"] += 5.0
                 elif exact_med_match:
-                    c["rerank_score"] += 3.0  # Medium boost for exact medication match
+                    c["rerank_score"] += 3.0
 
         candidate_list.sort(key=lambda x: x["rerank_score"], reverse=True)
         return candidate_list[:top_k]
