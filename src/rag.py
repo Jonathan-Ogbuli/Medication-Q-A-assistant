@@ -16,8 +16,8 @@ INDEX_NAME = "medication-index"
 
 USE_PINECONE = os.environ.get("USE_PINECONE", "false").strip().lower() in ("true", "1", "yes")
 
-# GROQ_MODEL = "llama-3.1-8b-instant" # faster
-GROQ_MODEL = "llama-3.3-70b-versatile" # more reasoning
+GROQ_MODEL = "llama-3.1-8b-instant" # faster
+# GROQ_MODEL = "llama-3.3-70b-versatile" # more reasoning
 
 # Module-level caches (lazy-loaded, auto-refreshed via mtime)
 bm25_index = None
@@ -40,14 +40,16 @@ _bm25_dataset_len = 0
 conversations = {}
 
 DISCLAIMER_TEXT_NL = """**Belangrijk:**
-- Deze informatie is alleen bedoeld voor educatieve of informatieve doeleinden en is geen vervanging voor professioneel medisch advies, diagnose of behandeling.
+- Dit is een AI, geen vervanging voor professioneel medisch advies, diagnose of behandeling.
+- Deze informatie is alleen bedoeld voor educatieve of informatieve doeleinden.
 - De informatie kan onvolledig, verouderd of onjuist zijn.
 - Bij een medische noodsituatie: bel direct 112 of ga naar de spoedeisende hulp.
 
 """
 
 DISCLAIMER_TEXT_EN = """**Important:**
-- This information is for educational and informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment.
+- This is an AI, not a substitute for professional medical advice, diagnosis, or treatment.
+- This information is for educational and informational purposes only.
 - The information may be incomplete, outdated, or incorrect.
 - In case of a medical emergency: call 112 immediately or go to the emergency room.
 
@@ -204,7 +206,7 @@ def embed_query(query):
     return embedding[0].tolist()
 
 
-def extract_medication_and_intent(query, language="nl"):
+def extract_medication_and_intent(query, language="nl", conversation_history=None):
     """Extract medication name and intent (bijwerkingen, interacties, etc.) from query"""
     query_lower = query.lower()
 
@@ -269,14 +271,31 @@ def extract_medication_and_intent(query, language="nl"):
             detected_med = known_meds[med_key]
             break
 
+    if (detected_med is None or detected_intent is None) and conversation_history:
+        for msg in reversed(conversation_history):
+            if msg["role"] == "user":
+                prev_query = msg["content"]
+                for med_key in sorted(known_meds.keys(), key=len, reverse=True):
+                    if med_key in prev_query.lower():
+                        if detected_med is None:
+                            detected_med = known_meds[med_key]
+                        break
+                for key, section in intents.items():
+                    if key in prev_query.lower():
+                        if detected_intent is None:
+                            detected_intent = section
+                        break
+                if detected_med is not None:
+                    break
+
     return detected_intent, detected_med
 
 
-def retrieve(query, top_k=5, dense_k=50, bm25_k=50, language="nl"):
+def retrieve(query, top_k=5, dense_k=50, bm25_k=50, language="nl", conversation_history=None):
     bm25 = init_bm25()
     dataset = load_dataset()
 
-    intent, med_name = extract_medication_and_intent(query, language)
+    intent, med_name = extract_medication_and_intent(query, language, conversation_history)
 
     exact_matches = []
     if med_name and intent:
@@ -455,7 +474,6 @@ Instructions:
 - Do not make up information.
 - If the question is unclear or missing important details, ask a clarifying question instead of answering.
 - If the user asked a previous question and now asks a follow-up question (like "what about X?" or "and the side effects?"), base your answer on the previous question.
-- Always clearly state that you are an AI and not a doctor, nurse, or other medical professional.
 - Use newlines to separate paragraphs for readability.
 
 Question: {query}
@@ -477,7 +495,6 @@ Instructies:
 - Verzin geen informatie.
 - Als de vraag onduidelijk is of belangrijke details mist, stel dan een verduidelijkende vraag in plaats van te antwoorden.
 - Als de gebruiker een eerdere vraag heeft gesteld en nu een vervolgvraag stelt (zoals "en hoe zit het met X?" of "en de bijwerkingen?"), ga dan uit van de eerdere vraag.
-- Geef altijd duidelijk aan dat je een AI bent en geen arts, verpleegkundige of andere medische professional.
 - Gebruik newlines om paragrafen te scheiden voor leesbaarheid.
 
 Vraag: {query}
@@ -503,7 +520,7 @@ Antwoord (in het Nederlands):"""
 
 def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3, language="nl"):
     session_id, history = get_session(session_id)
-    results = retrieve(query=query, top_k=top_k, language=language)
+    results = retrieve(query=query, top_k=top_k, language=language, conversation_history=history)
 
     if use_llm:
         print("Generating response...")
