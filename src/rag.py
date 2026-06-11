@@ -38,6 +38,7 @@ _file_mtimes = {
 _bm25_dataset_len = 0
 
 conversations = {}
+session_languages = {}
 
 DISCLAIMER_TEXT_NL = """**Belangrijk:**
 - Dit is een AI, geen vervanging voor professioneel medisch advies, diagnose of behandeling.
@@ -62,25 +63,29 @@ FAISS_INDEX_PATH = os.path.join(DATA_DIR, "medication_faiss.index")
 METADATA_PATH = os.path.join(DATA_DIR, "metadata.json")
 
 
-def get_session(session_id=None):
+def get_session(session_id=None, language="nl"):
     if session_id is None:
         session_id = str(uuid.uuid4())
 
     if session_id not in conversations:
         conversations[session_id] = []
+        session_languages[session_id] = language
 
     return session_id, conversations[session_id]
 
 
-def create_session():
+def create_session(language="nl"):
     session_id = str(uuid.uuid4())
     conversations[session_id] = []
+    session_languages[session_id] = language
     return session_id
 
 
 def end_session(session_id):
     if session_id in conversations:
         del conversations[session_id]
+    if session_id in session_languages:
+        del session_languages[session_id]
     return True
 
 
@@ -207,19 +212,51 @@ def embed_query(query):
 
 
 def extract_medication_and_intent(query, language="nl", conversation_history=None):
-    """Extract medication name and intent (bijwerkingen, interacties, etc.) from query"""
+    """Extract medication name and intent from query"""
     query_lower = query.lower()
 
-    intents = {
+    en_intents = {
+        'side effects': 'bijwerkingen',
+        'adverse': 'bijwerkingen',
+        'what are': 'bijwerkingen',
+        'interactions': 'interacties',
+        'interaction': 'interacties',
+        'contraindication': 'interacties',
+        'warning': 'interacties',
+        'alcohol': 'interacties',
+        'combine with': 'interacties',
+        'dosage': 'vergeten',
+        'dose': 'vergeten',
+        'missed': 'vergeten',
+        'overdose': 'vergeten',
+        'what is': 'wat_is_het',
+        'what does': 'wat_is_het',
+        'how does': 'wat_is_het',
+        'tell me about': 'wat_is_het',
+        'describe': 'wat_is_het',
+        'explain': 'wat_is_het',
+        'information about': 'wat_is_het',
+        'stop': 'stoppen',
+        'stopping': 'stoppen',
+        'withdrawal': 'stoppen',
+        'discontinuation': 'stoppen',
+        'discontinue': 'stoppen',
+        'pregnancy': 'zwangerschap',
+        'pregnant': 'zwangerschap',
+        'breastfeeding': 'borstvoeding',
+        'nursing': 'borstvoeding',
+        'driving': 'rijvaardigheid',
+        'drive': 'rijvaardigheid',
+        'drowsy': 'rijvaardigheid',
+    }
+
+    nl_intents = {
         'bijwerkingen': 'bijwerkingen',
         'bijwerking': 'bijwerkingen',
-        'side effects': 'bijwerkingen',
         'interacties': 'interacties',
         'interactie': 'interacties',
         'wisselwerking': 'interacties',
-        'interactions': 'interacties',
         'dosering': 'vergeten',
-        'dosage': 'vergeten',
         'inname': 'vergeten',
         'hoeveel': 'vergeten',
         'hoe werkt': 'wat_is_het',
@@ -227,29 +264,20 @@ def extract_medication_and_intent(query, language="nl", conversation_history=Non
         'werking': 'wat_is_het',
         'stoppen': 'stoppen',
         'stop': 'stoppen',
-        'discontinuation': 'stoppen',
         'zwangerschap': 'zwangerschap',
-        'pregnancy': 'zwangerschap',
         'borstvoeding': 'borstvoeding',
-        'breastfeeding': 'borstvoeding',
         'rijvaardigheid': 'rijvaardigheid',
         'rijden': 'rijvaardigheid',
         'autorijden': 'rijvaardigheid',
-        'driving': 'rijvaardigheid',
-        'what is': 'wat_is_het',
-        'how does': 'wat_is_het',
-        'what are': 'bijwerkingen',
-        'tell me about': 'wat_is_het',
         'sap': 'interacties',
         'drank': 'interacties',
         'combinatie': 'interacties',
         'waarschuwing': 'interacties',
         'contra': 'interacties',
-        'warning': 'interacties',
-        'contraindication': 'interacties',
     }
 
     detected_intent = None
+    intents = en_intents if language == "en" else nl_intents
     for key, section in intents.items():
         if key in query_lower:
             detected_intent = section
@@ -500,8 +528,11 @@ Instructies:
 Vraag: {query}
 Antwoord (in het Nederlands):"""
         
+        system_msg = "You are a medical information assistant. You ALWAYS respond in English." if language == "en" else "Je bent een medische informatie-assistent. Je antwoordt ALTIJD in het Nederlands."
         chat_completion = client.chat.completions.create(
-            messages=conversation_history + [
+            messages=[
+                {"role": "system", "content": system_msg},
+            ] + conversation_history + [
                 {
                     "role": "user",
                     "content": prompt,
@@ -519,19 +550,24 @@ Antwoord (in het Nederlands):"""
 
 
 def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3, language="nl"):
-    session_id, history = get_session(session_id)
-    results = retrieve(query=query, top_k=top_k, language=language, conversation_history=history)
+    session_id, history = get_session(session_id, language)
+    # Use session-stored language, overriding only if a non-default was explicitly passed
+    session_language = session_languages.get(session_id, language)
+    if language != "nl":
+        session_language = language
+    session_languages[session_id] = session_language
+    results = retrieve(query=query, top_k=top_k, language=session_language, conversation_history=history)
 
     if use_llm:
         print("Generating response...")
-        answer = generate_response(query, results, conversation_history=history, num_context=num_context, language=language)
+        answer = generate_response(query, results, conversation_history=history, num_context=num_context, language=session_language)
         if answer:
             # Prepend disclaimer only for the first message in session
             history.append({"role": "user", "content": query})
             history.append({"role": "assistant", "content": answer})
             # Prepend disclaimer only for the first assistant message in session
-            if len(history) == 2: # This will be true only for the very first assistant message
-                disclaimer = DISCLAIMER_TEXT_EN if language == "en" else DISCLAIMER_TEXT_NL
+            if len(history) == 2:
+                disclaimer = DISCLAIMER_TEXT_EN if session_language == "en" else DISCLAIMER_TEXT_NL
                 answer = disclaimer + answer
             return {"results": results, "answer": answer, "session_id": session_id}
 

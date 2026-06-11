@@ -4,4 +4,4 @@ __pycache__/
 data/*.json
 data/*.index
 *.pyc
-test_queries_*.md
+tests/
