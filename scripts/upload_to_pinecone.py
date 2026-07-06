@@ -2,7 +2,7 @@ import json
 import os
 import numpy as np
 import unicodedata
-from pinecone import Pinecone
+from pinecone import Pinecone, ServerlessSpec
 from dotenv import load_dotenv
 
 
@@ -14,8 +14,29 @@ def ascii_safe(text):
 load_dotenv()
 
 EMBEDDING_MODEL = "BAAI/bge-m3"
+EMBEDDING_DIM = 1024
 INDEX_NAME = "medication-index"
 BATCH_SIZE = 100
+
+
+def ensure_index(pc, index_name=INDEX_NAME, dimension=EMBEDDING_DIM, metric="euclidean"):
+    existing = [idx.name for idx in pc.list_indexes()]
+    if index_name in existing:
+        info = pc.describe_index(index_name)
+        if info.dimension == dimension and info.metric == metric:
+            print(f"Index '{index_name}' already exists with dim={dimension}, metric='{metric}'")
+            return
+        print(f"Index '{index_name}' exists with dim={info.dimension}, metric='{info.metric}' "
+              f"but we need dim={dimension}, metric='{metric}'. Deleting and recreating...")
+        pc.delete_index(index_name)
+    print(f"Creating index '{index_name}' with dim={dimension}, metric='{metric}'...")
+    pc.create_index(
+        name=index_name,
+        dimension=dimension,
+        metric=metric,
+        spec=ServerlessSpec(cloud="aws", region="us-east-1"),
+    )
+    print("Index ready.")
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
@@ -32,13 +53,15 @@ def load_existing_data(index_path=None, metadata_path=None):
     return vectors, metadata
 
 
-def upload_vectors(vectors, metadata, index_name=INDEX_NAME, clear=False):
-    pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
+def upload_vectors(vectors, metadata, pc, index_name=INDEX_NAME, clear=False):
     index = pc.Index(index_name)
 
     if clear:
         print("Clearing existing vectors...")
-        index.delete(delete_all=True)
+        try:
+            index.delete(delete_all=True)
+        except Exception:
+            print("  (nothing to clear — index is already empty)")
 
     vectors_list = vectors.tolist()
     total = len(vectors_list)
@@ -85,12 +108,18 @@ def upload_vectors(vectors, metadata, index_name=INDEX_NAME, clear=False):
 def main():
     import sys
     clear = "--clear" in sys.argv
-    
+    create_index = "--create-index" in sys.argv
+
+    pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
+
+    if create_index:
+        ensure_index(pc)
+
     print("Loading existing FAISS index...")
     vectors, metadata = load_existing_data()
-    print(f"Loaded {len(vectors)} vectors")
+    print(f"Loaded {len(vectors)} vectors with dimension {vectors.shape[1]}")
 
-    upload_vectors(vectors, metadata, clear=True)
+    upload_vectors(vectors, metadata, pc, clear=clear)
 
 
 if __name__ == "__main__":

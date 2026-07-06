@@ -1,5 +1,6 @@
 import json
 import os
+import time
 import uuid
 import numpy as np
 import faiss
@@ -18,7 +19,7 @@ INDEX_NAME = "medication-index"
 USE_PINECONE = os.environ.get("USE_PINECONE", "false").strip().lower() in ("true", "1", "yes")
 
 GROQ_MODEL = "openai/gpt-oss-20b"
-# GROQ_MODEL = "llama-3.3-70b-versatile" # more reasoning
+# GROQ_MODEL = "openai/gpt-oss-120b"
 
 # Module-level caches (lazy-loaded, auto-refreshed via mtime)
 bm25_index = None
@@ -472,22 +473,19 @@ def format_retrieved_results(results):
     return output
 
 
-def generate_response(query, retrieved_chunks, conversation_history=None, model=GROQ_MODEL, num_context=3, language="nl"):
-    try:
-        client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+def generate_response(query, retrieved_chunks, conversation_history=None, model=GROQ_MODEL, num_context=3, language="nl", max_retries=3):
+    # Use top num_context chunks for context
+    context_chunks = retrieved_chunks[:num_context] if retrieved_chunks else []
+    context_text = "\n\n---\n\n".join([f"[{c['title']} - {c['section']}]\n{c['content']}" for c in context_chunks])
 
-        # Use top num_context chunks for context
-        context_chunks = retrieved_chunks[:num_context] if retrieved_chunks else []
-        context_text = "\n\n---\n\n".join([f"[{c['title']} - {c['section']}]\n{c['content']}" for c in context_chunks])
+    history_text = ""
+    if conversation_history:
+        history_text = "\n\nPrevious conversation:\n" if language == "en" else "\n\nEerdere conversatie:\n"
+        for msg in conversation_history[-5:]:
+            history_text += f"{msg['role']}: {msg['content']}\n"
 
-        history_text = ""
-        if conversation_history:
-            history_text = "\n\nPrevious conversation:\n" if language == "en" else "\n\nEerdere conversatie:\n"
-            for msg in conversation_history[-5:]:
-                history_text += f"{msg['role']}: {msg['content']}\n"
-
-        if language == "en":
-            prompt = f"""You have information about medications. Use the context below to answer the question IN ENGLISH.
+    if language == "en":
+        prompt = f"""You have information about medications. Use the context below to answer the question IN ENGLISH.
 
 Context:
 {context_text}
@@ -507,8 +505,8 @@ Instructions:
 
 Question: {query}
 Answer (in English):"""
-        else:
-            prompt = f"""Je hebt informatie over medicijnen. Gebruik de onderstaande context om de vraag te beantwoorden in het Nederlands.
+    else:
+        prompt = f"""Je hebt informatie over medicijnen. Gebruik de onderstaande context om de vraag te beantwoorden in het Nederlands.
 
 Context:
 {context_text}
@@ -528,31 +526,42 @@ Instructies:
 
 Vraag: {query}
 Antwoord (in het Nederlands):"""
-        
-        system_msg = "You are a medical information assistant. You ALWAYS respond in English." if language == "en" else "Je bent een medische informatie-assistent. Je antwoordt ALTIJD in het Nederlands."
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {"role": "system", "content": system_msg},
-            ] + conversation_history + [
-                {
-                    "role": "user",
-                    "content": prompt,
-                }
-            ],
-            model=model,
-            temperature=0.0,
-            max_tokens=500,
-        )
-        
-        return chat_completion.choices[0].message.content
-    except Exception as e:
-        print(f"Error generating response: {e}")
-        return None
+    
+    system_msg = "You are a medical information assistant. You ALWAYS respond in English." if language == "en" else "Je bent een medische informatie-assistent. Je antwoordt ALTIJD in het Nederlands."
+    messages = [
+        {"role": "system", "content": system_msg},
+    ] + (conversation_history or []) + [
+        {"role": "user", "content": prompt},
+    ]
+
+    client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
+    for attempt in range(max_retries):
+        try:
+            chat_completion = client.chat.completions.create(
+                messages=messages,
+                model=model,
+                temperature=0.0,
+                max_tokens=500,
+            )
+            return chat_completion.choices[0].message.content
+        except Exception as e:
+            error_str = str(e).lower()
+            is_retryable = any(
+                t in error_str
+                for t in ["rate", "timeout", "429", "503", "502", "500", "server", "temporarily", "unavailable"]
+            )
+            if is_retryable and attempt < max_retries - 1:
+                wait = 2 ** attempt
+                print(f"Groq API error (attempt {attempt + 1}/{max_retries}): {e}. Retrying in {wait}s...")
+                time.sleep(wait)
+            else:
+                print(f"Groq API error after {attempt + 1} attempts: {e}")
+                return None
 
 
 def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3, language="nl"):
     session_id, history = get_session(session_id, language)
-    # Use session-stored language, overriding only if a non-default was explicitly passed
     session_language = session_languages.get(session_id, language)
     if language != "nl":
         session_language = language
@@ -563,17 +572,26 @@ def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3, lang
         print("Generating response...")
         answer = generate_response(query, results, conversation_history=history, num_context=num_context, language=session_language)
         if answer:
-            # Prepend disclaimer only for the first message in session
             history.append({"role": "user", "content": query})
             history.append({"role": "assistant", "content": answer})
-            # Prepend disclaimer only for the first assistant message in session
             if len(history) == 2:
                 disclaimer = DISCLAIMER_TEXT_EN if session_language == "en" else DISCLAIMER_TEXT_NL
                 answer = disclaimer + answer
             return {"results": results, "answer": answer, "session_id": session_id}
 
-    formatted = format_retrieved_results(results)
-    return {"results": results, "answer": formatted, "session_id": session_id}
+        error_msg = (
+            "I'm having trouble generating an answer right now. Please try again later or consult a doctor or pharmacist for medical advice."
+            if session_language == "en" else
+            "Ik heb momenteel moeite met het genereren van een antwoord. Probeer het later opnieuw of raadpleeg een arts of apotheker voor medisch advies."
+        )
+        return {"results": results, "answer": error_msg, "session_id": session_id}
+
+    no_llm_msg = (
+        "Answer generation is currently unavailable. Please try again later."
+        if session_language == "en" else
+        "Antwoordgeneratie is momenteel niet beschikbaar. Probeer het later nogmaals."
+    )
+    return {"results": results, "answer": no_llm_msg, "session_id": session_id}
 
 
 if __name__ == "__main__":
