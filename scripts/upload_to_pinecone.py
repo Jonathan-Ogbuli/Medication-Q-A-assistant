@@ -13,7 +13,7 @@ def ascii_safe(text):
 
 load_dotenv()
 
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "BAAI/bge-m3"
 INDEX_NAME = "medication-index"
 BATCH_SIZE = 100
 

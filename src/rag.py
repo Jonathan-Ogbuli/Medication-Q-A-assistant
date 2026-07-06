@@ -6,17 +6,18 @@ import faiss
 from sentence_transformers import SentenceTransformer, CrossEncoder
 from dotenv import load_dotenv
 from rank_bm25 import BM25Okapi
+from groq import Groq
 import nltk
 
 load_dotenv()
 
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "BAAI/bge-m3"
 RERANKER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 INDEX_NAME = "medication-index"
 
 USE_PINECONE = os.environ.get("USE_PINECONE", "false").strip().lower() in ("true", "1", "yes")
 
-GROQ_MODEL = "llama-3.1-8b-instant" # faster
+GROQ_MODEL = "openai/gpt-oss-20b"
 # GROQ_MODEL = "llama-3.3-70b-versatile" # more reasoning
 
 # Module-level caches (lazy-loaded, auto-refreshed via mtime)
@@ -205,9 +206,11 @@ def local_dense_search(query_embedding, top_k=50):
     return results
 
 
+BGE_M3_QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
+
 def embed_query(query):
     model = get_embedding_model()
-    embedding = model.encode([query]).astype("float32")
+    embedding = model.encode([query], prompt=BGE_M3_QUERY_INSTRUCTION).astype("float32")
     return embedding[0].tolist()
 
 
@@ -471,8 +474,6 @@ def format_retrieved_results(results):
 
 def generate_response(query, retrieved_chunks, conversation_history=None, model=GROQ_MODEL, num_context=3, language="nl"):
     try:
-        from groq import Groq
-
         client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
         # Use top num_context chunks for context
