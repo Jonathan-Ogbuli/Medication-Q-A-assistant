@@ -501,7 +501,7 @@ Instructions:
 - Do not make up information.
 - If the question is unclear or missing important details, ask a clarifying question instead of answering.
 - If the user asked a previous question and now asks a follow-up question (like "what about X?" or "and the side effects?"), base your answer on the previous question.
-- Use newlines to separate paragraphs for readability.
+- Use bullet points (-) instead of numbered lists (1., 2., ...) unless the numbers serve a specific purpose like ranking or step-by-step instructions.
 
 Question: {query}
 Answer (in English):"""
@@ -522,7 +522,7 @@ Instructies:
 - Verzin geen informatie.
 - Als de vraag onduidelijk is of belangrijke details mist, stel dan een verduidelijkende vraag in plaats van te antwoorden.
 - Als de gebruiker een eerdere vraag heeft gesteld en nu een vervolgvraag stelt (zoals "en hoe zit het met X?" of "en de bijwerkingen?"), ga dan uit van de eerdere vraag.
-- Gebruik newlines om paragrafen te scheiden voor leesbaarheid.
+- Gebruik streepjes (-) in plaats van genummerde lijsten (1., 2., ...), tenzij de nummers een specifiek doel dienen zoals een rangschikking of stappenplan.
 
 Vraag: {query}
 Antwoord (in het Nederlands):"""

@@ -125,10 +125,34 @@ async function sendQuestion(question) {
     }
 }
 
+function renderMarkdown(text) {
+    text = text.trimEnd();
+    text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    text = text.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+    text = text.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+    text = text.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+    text = text.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+    text = text.replace(/^(- .+(?:\n|$))+/gm, function(match) {
+        var items = match.trim().split('\n').map(function(l) {
+            return '<li>' + l.replace(/^- /, '') + '</li>';
+        }).join('');
+        return '<ul>' + items + '</ul>';
+    });
+    text = text.replace(/\n{2,}/g, '<br><br>');
+    text = text.replace(/\n/g, '<br>');
+    return text;
+}
+
 function addMessage(content, type) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${type}`;
-    messageDiv.textContent = content;
+    if (type === 'user') {
+        messageDiv.textContent = content;
+    } else {
+        messageDiv.innerHTML = renderMarkdown(content);
+    }
     messagesContainer.appendChild(messageDiv);
     scrollToBottom();
 }
