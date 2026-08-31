@@ -544,7 +544,9 @@ Antwoord (in het Nederlands):"""
                 temperature=0.0,
                 max_tokens=500,
             )
-            return chat_completion.choices[0].message.content
+            usage = chat_completion.usage
+            total_tokens = usage.total_tokens if usage else 0
+            return chat_completion.choices[0].message.content, total_tokens
         except Exception as e:
             error_str = str(e).lower()
             is_retryable = any(
@@ -557,7 +559,7 @@ Antwoord (in het Nederlands):"""
                 time.sleep(wait)
             else:
                 print(f"Groq API error after {attempt + 1} attempts: {e}")
-                return None
+                return None, 0
 
 
 def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3, language="nl"):
@@ -570,14 +572,14 @@ def rag_query(query, top_k=5, use_llm=True, session_id=None, num_context=3, lang
 
     if use_llm:
         print("Generating response...")
-        answer = generate_response(query, results, conversation_history=history, num_context=num_context, language=session_language)
+        answer, token_count = generate_response(query, results, conversation_history=history, num_context=num_context, language=session_language)
         if answer:
             history.append({"role": "user", "content": query})
             history.append({"role": "assistant", "content": answer})
             if len(history) == 2:
                 disclaimer = DISCLAIMER_TEXT_EN if session_language == "en" else DISCLAIMER_TEXT_NL
                 answer = disclaimer + answer
-            return {"results": results, "answer": answer, "session_id": session_id}
+            return {"results": results, "answer": answer, "session_id": session_id, "token_count": token_count}
 
         error_msg = (
             "I'm having trouble generating an answer right now. Please try again later or consult a doctor or pharmacist for medical advice."
